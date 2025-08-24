@@ -1,0 +1,54 @@
+/**
+ * 自定义右键菜单样式
+ */
+
+/* 隐藏默认右键菜单 */
+/* 注意：在实际应用中，不建议完全禁用默认右键菜单 */
+/* body { cursor: default; } */
+
+/* 自定义右键菜单 */
+.custom-contextmenu {
+  position: fixed;
+  z-index: 9999;
+  display: none;
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  min-width: 160px;
+  border: 1px solid var(--border-color);
+}
+
+.custom-contextmenu-item {
+  display: block;
+  padding: 8px 16px;
+  color: var(--text-color);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+}
+
+.custom-contextmenu-item:hover {
+  background-color: var(--hover-bg);
+}
+
+.custom-contextmenu-item i {
+  margin-right: 8px;
+  width: 16px;
+  text-align: center;
+}
+
+/* 分隔线 */
+.custom-contextmenu-separator {
+  height: 1px;
+  margin: 4px 0;
+  background-color: var(--border-color);
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .custom-contextmenu {
+    min-width: 140px;
+  }
+}
