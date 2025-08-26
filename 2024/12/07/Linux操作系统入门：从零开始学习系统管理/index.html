@@ -1,0 +1,1304 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux操作系统入门：从零开始学习系统管理 | 观棋的个人博客</title><meta name="author" content="观棋"><meta name="copyright" content="观棋"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Linux操作系统入门：从零开始学习系统管理引言你好！欢迎来到Linux操作系统的学习世界。如果你是一个计算机新手，可能会听说过Windows、macOS和Linux这几种操作系统。其中，Linux可能是你最陌生的一个，但它却是服务器领域最流行的操作系统，也是许多开发者和系统管理员的首选。 为什么要学习Linux？因为它是开源的、稳定的、安全的，而且在服务器、嵌入式设备、云计算等领域有着广泛的应用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux操作系统入门：从零开始学习系统管理">
+<meta property="og:url" content="http://example.com/2024/12/07/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="观棋的个人博客">
+<meta property="og:description" content="Linux操作系统入门：从零开始学习系统管理引言你好！欢迎来到Linux操作系统的学习世界。如果你是一个计算机新手，可能会听说过Windows、macOS和Linux这几种操作系统。其中，Linux可能是你最陌生的一个，但它却是服务器领域最流行的操作系统，也是许多开发者和系统管理员的首选。 为什么要学习Linux？因为它是开源的、稳定的、安全的，而且在服务器、嵌入式设备、云计算等领域有着广泛的应用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/linux.jpg">
+<meta property="article:published_time" content="2024-12-07T03:00:00.000Z">
+<meta property="article:modified_time" content="2025-08-26T13:15:18.747Z">
+<meta property="article:author" content="观棋">
+<meta property="article:tag" content="入门教程">
+<meta property="article:tag" content="零基础">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="系统管理">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/linux.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux操作系统入门：从零开始学习系统管理",
+  "url": "http://example.com/2024/12/07/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/",
+  "image": "http://example.com/img/linux.jpg",
+  "datePublished": "2024-12-07T03:00:00.000Z",
+  "dateModified": "2025-08-26T13:15:18.747Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "观棋",
+      "url": "http://example.com"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2024/12/07/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="/css/custom-music.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a49f6e14165ea37c43e05b83a9c7f0ce";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+btf.addGlobalFn('pjaxComplete', () => {
+  _hmt.push(['_trackPageview',window.location.pathname])
+}, 'baidu_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.json","preload":false,"top_n_per_article":1,"unescape":true,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":400,"highlightFullpage":true,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux操作系统入门：从零开始学习系统管理',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom-contextmenu.css"><link rel="stylesheet" href="/css/custom-enhancements.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="/css/categorybar.css"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiperstyle.css" media="print" onload="this.media='all'"><!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      if ($loadingBox.classList.contains('loaded')) return
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+
+  if (document.readyState === 'complete') {
+    preloader.endLoading()
+  } else {
+    window.addEventListener('load', preloader.endLoading)
+    document.addEventListener('DOMContentLoaded', preloader.endLoading)
+    // Add timeout protection: force end after 7 seconds
+    setTimeout(preloader.endLoading, 7000)
+  }
+
+  if (true) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-color: #f8f9fa;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">78</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Photos/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/linux.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/butterfly-icon.png" alt="Logo"><span class="site-name">观棋的个人博客</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux操作系统入门：从零开始学习系统管理</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/Photos/"><i class="fa-fw fas fa-images"></i><span> 图库</span></a></li><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><span class="site-page group hide"><i class="fa-fw fas fa-book-open"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/comments/"><i class="fa-fw fas fa-comments"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Linux操作系统入门：从零开始学习系统管理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-07T03:00:00.000Z" title="发表于 2024-12-07 11:00:00">2024-12-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-08-26T13:15:18.747Z" title="更新于 2025-08-26 21:15:18">2025-08-26</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/">Linux</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Linux/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">系统管理</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><div id="post-outdate-notice" data="{&quot;limitDay&quot;:365,&quot;messagePrev&quot;:&quot;已经过了&quot;,&quot;messageNext&quot;:&quot;天自上次更新，文章内容可能已过时。&quot;,&quot;postUpdate&quot;:&quot;2025-08-26 21:15:18&quot;}" hidden></div><h1 id="Linux操作系统入门：从零开始学习系统管理"><a href="#Linux操作系统入门：从零开始学习系统管理" class="headerlink" title="Linux操作系统入门：从零开始学习系统管理"></a>Linux操作系统入门：从零开始学习系统管理</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>你好！欢迎来到Linux操作系统的学习世界。如果你是一个计算机新手，可能会听说过Windows、macOS和Linux这几种操作系统。其中，Linux可能是你最陌生的一个，但它却是服务器领域最流行的操作系统，也是许多开发者和系统管理员的首选。</p>
+<p>为什么要学习Linux？因为它是开源的、稳定的、安全的，而且在服务器、嵌入式设备、云计算等领域有着广泛的应用。无论是想成为一名程序员、系统管理员，还是想深入了解计算机系统，学习Linux都是一个很好的起点。</p>
+<p>在这篇文章中，我会使用费曼学习法，用通俗易懂的语言解释Linux的核心概念和基本操作，并在关键知识点后提出问题，帮助你巩固所学内容。即使你之前没有任何Linux使用经验，也能轻松理解Linux的基础知识。</p>
+<h2 id="1-什么是Linux？"><a href="#1-什么是Linux？" class="headerlink" title="1. 什么是Linux？"></a>1. 什么是Linux？</h2><h3 id="思考问题"><a href="#思考问题" class="headerlink" title="思考问题"></a>思考问题</h3><details>
+<summary>Linux与Windows、macOS有什么区别？</summary>
+
+<p>Linux、Windows和macOS是三种主流的操作系统，它们的主要区别如下：</p>
+<ol>
+<li><p><strong>开源性</strong>：</p>
+<ul>
+<li>Linux是开源的，任何人都可以查看、修改和分发其源代码</li>
+<li>Windows和macOS是闭源的，只有微软和苹果公司可以访问和修改其源代码</li>
+</ul>
+</li>
+<li><p><strong>价格</strong>：</p>
+<ul>
+<li>大多数Linux发行版是免费的</li>
+<li>Windows和macOS需要付费购买许可证</li>
+</ul>
+</li>
+<li><p><strong>安全性</strong>：</p>
+<ul>
+<li>Linux的安全性相对较高，因为它有严格的权限管理机制，而且开源的特性使得漏洞能够被快速发现和修复</li>
+<li>Windows由于用户基数大，常常成为黑客攻击的目标</li>
+<li>macOS的安全性也很高，但同样也有被攻击的风险</li>
+</ul>
+</li>
+<li><p><strong>应用场景</strong>：</p>
+<ul>
+<li>Linux广泛应用于服务器、嵌入式设备、云计算等领域</li>
+<li>Windows主要应用于个人电脑和办公环境</li>
+<li>macOS主要应用于创意工作和个人电脑</li>
+</ul>
+</li>
+<li><p><strong>用户界面</strong>：</p>
+<ul>
+<li>Linux有多种桌面环境可供选择，如GNOME、KDE、XFCE等</li>
+<li>Windows有自己的Windows桌面环境</li>
+<li>macOS有自己的Aqua桌面环境</li>
+</ul>
+</li>
+<li><p><strong>软件生态</strong>：</p>
+<ul>
+<li>Windows的软件生态最丰富，几乎所有的主流软件都有Windows版本</li>
+<li>macOS的软件生态也很丰富，但主要集中在创意和办公软件方面</li>
+<li>Linux的软件生态也在不断发展，但有些专业软件可能没有Linux版本</li>
+</ul>
+</li>
+<li><p><strong>定制性</strong>：</p>
+<ul>
+<li>Linux的定制性最强，用户可以根据自己的需求定制系统的各个方面</li>
+<li>Windows和macOS的定制性相对较弱</li>
+</ul>
+</li>
+</ol>
+<p>总之，选择哪种操作系统取决于你的具体需求。如果你是一名开发者或系统管理员，或者想学习计算机系统的底层知识，那么Linux可能是一个很好的选择。如果你主要使用电脑进行日常办公或娱乐，那么Windows或macOS可能更适合你。</p>
+</details>
+
+<h3 id="1-1-Linux的定义"><a href="#1-1-Linux的定义" class="headerlink" title="1.1 Linux的定义"></a>1.1 Linux的定义</h3><p>Linux是一种开源的操作系统内核，由芬兰程序员林纳斯·托瓦兹（Linus Torvalds）于1991年创建。操作系统内核是操作系统的核心部分，它负责管理计算机的硬件资源，如CPU、内存、硬盘、网络等，并为应用程序提供访问这些资源的接口。</p>
+<p>需要注意的是，Linux通常指的是Linux内核加上各种软件和工具组成的完整操作系统，也就是Linux发行版（Linux Distribution）。常见的Linux发行版有Ubuntu、Debian、CentOS、Fedora、Arch Linux等。</p>
+<h3 id="1-2-Linux的特点"><a href="#1-2-Linux的特点" class="headerlink" title="1.2 Linux的特点"></a>1.2 Linux的特点</h3><p>Linux有许多独特的特点，这也是它在服务器领域和开发者社区中如此受欢迎的原因：</p>
+<ul>
+<li><strong>开源</strong>：Linux的源代码是开放的，任何人都可以查看、修改和分发它。这使得Linux能够快速发展和改进。</li>
+<li><strong>稳定</strong>：Linux以其稳定性著称，许多Linux服务器可以连续运行数年而不需要重启。</li>
+<li><strong>安全</strong>：Linux有严格的权限管理机制，而且开源的特性使得漏洞能够被快速发现和修复。</li>
+<li><strong>高效</strong>：Linux的资源占用相对较少，即使在配置较低的硬件上也能运行得很好。</li>
+<li><strong>可定制</strong>：Linux的各个方面都可以定制，用户可以根据自己的需求构建自己的系统。</li>
+<li><strong>广泛的硬件支持</strong>：Linux支持各种硬件平台，从服务器、个人电脑到嵌入式设备都可以运行Linux。</li>
+<li><strong>强大的命令行工具</strong>：Linux提供了丰富的命令行工具，这些工具可以帮助用户高效地完成各种任务。</li>
+</ul>
+<h3 id="1-3-Linux的应用场景"><a href="#1-3-Linux的应用场景" class="headerlink" title="1.3 Linux的应用场景"></a>1.3 Linux的应用场景</h3><p>Linux在各个领域都有广泛的应用：</p>
+<ul>
+<li><strong>服务器</strong>：Linux是服务器领域最流行的操作系统，许多网站、应用程序和服务都运行在Linux服务器上。</li>
+<li><strong>云计算</strong>：大多数云服务提供商（如AWS、Azure、Google Cloud）都提供Linux虚拟机，而且许多云原生应用程序也都是为Linux设计的。</li>
+<li><strong>嵌入式设备</strong>：Linux广泛应用于各种嵌入式设备，如智能手机（Android基于Linux内核）、智能电视、路由器、物联网设备等。</li>
+<li><strong>开发环境</strong>：许多开发者选择在Linux上进行开发，因为Linux提供了丰富的开发工具和环境，而且与服务器环境更加接近。</li>
+<li><strong>科学计算和大数据</strong>：Linux在科学计算和大数据领域也有广泛的应用，许多科学计算软件和大数据框架（如Hadoop、Spark）都是为Linux设计的。</li>
+</ul>
+<h2 id="2-Linux的安装"><a href="#2-Linux的安装" class="headerlink" title="2. Linux的安装"></a>2. Linux的安装</h2><p>现在，让我们来学习如何安装Linux。Linux有许多发行版可供选择，对于初学者来说，Ubuntu是一个不错的选择，因为它易于安装和使用，而且有庞大的社区支持。</p>
+<h3 id="2-1-选择安装方式"><a href="#2-1-选择安装方式" class="headerlink" title="2.1 选择安装方式"></a>2.1 选择安装方式</h3><p>安装Linux有多种方式，你可以根据自己的需求选择合适的方式：</p>
+<ul>
+<li><strong>双系统安装</strong>：在现有的Windows或macOS系统上安装Linux，形成双系统，开机时可以选择进入哪个系统。</li>
+<li><strong>虚拟机安装</strong>：使用虚拟机软件（如VirtualBox、VMware）在现有的操作系统上安装Linux，这样可以在不影响现有系统的情况下体验Linux。</li>
+<li><strong>单独安装</strong>：将Linux安装在一台单独的电脑上，作为唯一的操作系统。</li>
+<li><strong>Live CD&#x2F;USB</strong>：使用Linux的Live CD或Live USB启动电脑，不需要安装就可以体验Linux。</li>
+</ul>
+<p>对于初学者来说，我推荐使用虚拟机安装的方式，因为这种方式最安全、最方便，不需要修改现有的系统。</p>
+<h3 id="2-2-在虚拟机上安装Ubuntu"><a href="#2-2-在虚拟机上安装Ubuntu" class="headerlink" title="2.2 在虚拟机上安装Ubuntu"></a>2.2 在虚拟机上安装Ubuntu</h3><p>下面，我将以VirtualBox为例，介绍如何在虚拟机上安装Ubuntu：</p>
+<h4 id="步骤1：下载并安装VirtualBox"><a href="#步骤1：下载并安装VirtualBox" class="headerlink" title="步骤1：下载并安装VirtualBox"></a>步骤1：下载并安装VirtualBox</h4><ol>
+<li>访问VirtualBox官网（<a target="_blank" rel="noopener" href="https://www.virtualbox.org/%EF%BC%89%EF%BC%8C%E4%B8%8B%E8%BD%BD%E9%80%82%E5%90%88%E4%BD%A0%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84VirtualBox%E5%AE%89%E8%A3%85%E5%8C%85%E3%80%82">https://www.virtualbox.org/），下载适合你操作系统的VirtualBox安装包。</a></li>
+<li>双击安装包，按照提示完成安装。</li>
+</ol>
+<h4 id="步骤2：下载Ubuntu镜像文件"><a href="#步骤2：下载Ubuntu镜像文件" class="headerlink" title="步骤2：下载Ubuntu镜像文件"></a>步骤2：下载Ubuntu镜像文件</h4><ol>
+<li>访问Ubuntu官网（<a target="_blank" rel="noopener" href="https://ubuntu.com/%EF%BC%89%EF%BC%8C%E4%B8%8B%E8%BD%BD%E6%9C%80%E6%96%B0%E7%9A%84Ubuntu%E6%A1%8C%E9%9D%A2%E7%89%88%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6%EF%BC%88ISO%E6%96%87%E4%BB%B6%EF%BC%89%E3%80%82">https://ubuntu.com/），下载最新的Ubuntu桌面版镜像文件（ISO文件）。</a></li>
+<li>选择适合你电脑架构的版本（通常是64位版本）。</li>
+</ol>
+<h4 id="步骤3：创建虚拟机"><a href="#步骤3：创建虚拟机" class="headerlink" title="步骤3：创建虚拟机"></a>步骤3：创建虚拟机</h4><ol>
+<li>打开VirtualBox，点击”新建”按钮。</li>
+<li>在弹出的对话框中，输入虚拟机的名称（如”Ubuntu”），选择类型为”Linux”，版本为”Ubuntu (64-bit)”，然后点击”下一步”。</li>
+<li>设置虚拟机的内存大小（建议至少2GB），然后点击”下一步”。</li>
+<li>选择”创建虚拟硬盘”，然后点击”创建”。</li>
+<li>选择虚拟硬盘文件类型（保持默认的”VDI (VirtualBox Disk Image)”），然后点击”下一步”。</li>
+<li>选择存储在物理硬盘上的方式（保持默认的”动态分配”），然后点击”下一步”。</li>
+<li>设置虚拟硬盘的大小（建议至少20GB），然后点击”创建”。</li>
+</ol>
+<h4 id="步骤4：安装Ubuntu"><a href="#步骤4：安装Ubuntu" class="headerlink" title="步骤4：安装Ubuntu"></a>步骤4：安装Ubuntu</h4><ol>
+<li>在VirtualBox主界面中，选中刚才创建的虚拟机，然后点击”设置”按钮。</li>
+<li>在设置窗口中，选择”存储”，然后点击”控制器：IDE”下的”Empty”，再点击右侧的光盘图标，选择”选择虚拟光盘文件”。</li>
+<li>浏览到之前下载的Ubuntu ISO文件，选中它，然后点击”打开”。</li>
+<li>点击”确定”按钮，返回VirtualBox主界面。</li>
+<li>点击”启动”按钮，启动虚拟机。</li>
+<li>虚拟机启动后，会进入Ubuntu的安装界面。选择”Install Ubuntu”，然后按照提示完成安装。</li>
+<li>在安装过程中，你需要选择语言、时区、键盘布局，设置用户名和密码等。</li>
+<li>安装完成后，重启虚拟机，就可以进入Ubuntu系统了。</li>
+</ol>
+<h3 id="思考问题-1"><a href="#思考问题-1" class="headerlink" title="思考问题"></a>思考问题</h3><details>
+<summary>为什么说虚拟机安装是初学者学习Linux的最佳方式？</summary>
+
+<p>虚拟机安装是初学者学习Linux的最佳方式，主要有以下几个原因：</p>
+<ol>
+<li><p><strong>安全性高</strong>：虚拟机安装不会修改现有的操作系统和数据，即使在虚拟机中操作失误，也不会影响到主机系统。这对于初学者来说非常重要，因为在学习过程中难免会犯一些错误。</p>
+</li>
+<li><p><strong>方便快捷</strong>：虚拟机安装相对简单，只需要下载虚拟机软件和Linux镜像文件，就可以快速创建和启动虚拟机。而且，虚拟机可以随时暂停、恢复、快照和删除，非常方便。</p>
+</li>
+<li><p><strong>资源占用少</strong>：虚拟机可以根据需要分配资源，不需要为Linux预留单独的硬盘空间或内存。当不使用Linux时，可以关闭虚拟机，释放资源给主机系统使用。</p>
+</li>
+<li><p><strong>学习环境纯净</strong>：虚拟机提供了一个纯净的学习环境，没有预装的软件和配置，可以让初学者从零开始学习Linux的配置和使用。</p>
+</li>
+<li><p><strong>便于实验</strong>：虚拟机非常适合进行各种实验，如安装软件、配置服务、测试脚本等。如果实验失败，可以快速恢复到之前的快照或重新创建虚拟机。</p>
+</li>
+<li><p><strong>多系统并存</strong>：使用虚拟机，你可以在一台电脑上同时运行多个操作系统，如Windows、macOS和Linux，方便在不同的系统之间切换和对比。</p>
+</li>
+<li><p><strong>网络隔离</strong>：虚拟机可以设置不同的网络模式，如桥接模式、NAT模式、仅主机模式等，方便学习网络相关的知识和进行网络实验。</p>
+</li>
+</ol>
+<p>总之，虚拟机安装为初学者提供了一个安全、方便、灵活的Linux学习环境，是初学者学习Linux的最佳方式。当你对Linux有了一定的了解，并且有特定的需求时，可以考虑双系统安装或单独安装的方式。</p>
+</details>
+
+<h2 id="3-Linux的基本概念"><a href="#3-Linux的基本概念" class="headerlink" title="3. Linux的基本概念"></a>3. Linux的基本概念</h2><p>在开始使用Linux之前，我们需要了解一些Linux的基本概念，这些概念对于理解Linux的工作原理和使用方法非常重要。</p>
+<h3 id="3-1-文件系统"><a href="#3-1-文件系统" class="headerlink" title="3.1 文件系统"></a>3.1 文件系统</h3><p>Linux的文件系统是一个层次化的目录结构，所有的文件和目录都从根目录（&#x2F;）开始。与Windows不同，Linux没有C盘、D盘等盘符，而是将所有的存储设备（如硬盘、U盘等）挂载到文件系统的某个目录下。</p>
+<p>Linux的主要目录及其作用：</p>
+<ul>
+<li><strong>&#x2F;</strong>：根目录，所有的文件和目录都从这里开始</li>
+<li><strong>&#x2F;bin</strong>：存放常用的命令二进制文件</li>
+<li><strong>&#x2F;boot</strong>：存放启动Linux所需的文件</li>
+<li><strong>&#x2F;dev</strong>：存放设备文件，Linux将所有的设备都视为文件</li>
+<li><strong>&#x2F;etc</strong>：存放系统配置文件</li>
+<li><strong>&#x2F;home</strong>：存放普通用户的主目录，每个用户都有一个自己的目录</li>
+<li><strong>&#x2F;lib</strong>：存放系统库文件</li>
+<li><strong>&#x2F;media</strong>：自动挂载的外部设备（如U盘、光盘）的挂载点</li>
+<li><strong>&#x2F;mnt</strong>：手动挂载的外部设备的挂载点</li>
+<li><strong>&#x2F;opt</strong>：存放可选的应用程序</li>
+<li><strong>&#x2F;proc</strong>：虚拟文件系统，存放系统运行时的信息</li>
+<li><strong>&#x2F;root</strong>：root用户的主目录</li>
+<li><strong>&#x2F;sbin</strong>：存放系统管理员使用的命令二进制文件</li>
+<li><strong>&#x2F;srv</strong>：存放服务相关的数据</li>
+<li><strong>&#x2F;sys</strong>：虚拟文件系统，存放硬件设备的信息</li>
+<li><strong>&#x2F;tmp</strong>：存放临时文件，系统重启后会清空</li>
+<li><strong>&#x2F;usr</strong>：存放用户程序和文件</li>
+<li><strong>&#x2F;var</strong>：存放可变的文件，如日志文件、缓存等</li>
+</ul>
+<h3 id="3-2-用户和组"><a href="#3-2-用户和组" class="headerlink" title="3.2 用户和组"></a>3.2 用户和组</h3><p>Linux是一个多用户操作系统，它允许多个用户同时使用系统。每个用户都有一个唯一的用户名和用户ID（UID），并且属于一个或多个组。组是用户的集合，它可以方便地管理多个用户的权限。</p>
+<p>Linux的用户类型：</p>
+<ul>
+<li><strong>root用户</strong>：超级用户，拥有系统的所有权限，可以执行任何操作</li>
+<li><strong>普通用户</strong>：由root用户创建的用户，只有有限的权限</li>
+<li><strong>系统用户</strong>：系统服务使用的用户，通常不允许登录</li>
+</ul>
+<p>Linux的组类型：</p>
+<ul>
+<li><strong>私有组</strong>：创建用户时自动创建的组，组名与用户名相同</li>
+<li><strong>标准组</strong>：手动创建的组，可以包含多个用户</li>
+<li><strong>系统组</strong>：系统服务使用的组</li>
+</ul>
+<h3 id="3-3-权限管理"><a href="#3-3-权限管理" class="headerlink" title="3.3 权限管理"></a>3.3 权限管理</h3><p>Linux有严格的权限管理机制，它通过文件权限来控制用户对文件和目录的访问。每个文件和目录都有三组权限：所有者权限、所属组权限和其他用户权限。每组权限包括读（r）、写（w）和执行（x）三种权限。</p>
+<p>权限的表示方式：</p>
+<ul>
+<li><strong>字符表示</strong>：r、w、x分别表示读、写、执行权限，-表示没有对应权限</li>
+<li><strong>数字表示</strong>：r&#x3D;4，w&#x3D;2，x&#x3D;1，-&#x3D;0，每组权限的数字是三种权限的和</li>
+</ul>
+<p>例如，权限”rwxr-xr–”表示：</p>
+<ul>
+<li>所有者有读、写、执行权限（rwx）</li>
+<li>所属组有读、执行权限（r-x）</li>
+<li>其他用户有读权限（r–）</li>
+</ul>
+<p>用数字表示就是754（7&#x3D;4+2+1，5&#x3D;4+1，4&#x3D;4）。</p>
+<h3 id="3-4-命令行界面"><a href="#3-4-命令行界面" class="headerlink" title="3.4 命令行界面"></a>3.4 命令行界面</h3><p>Linux的命令行界面（CLI）是用户与系统交互的主要方式，它提供了比图形用户界面（GUI）更强大、更高效的操作方式。在命令行界面中，用户可以通过输入命令来完成各种任务，如文件操作、系统管理、软件安装等。</p>
+<p>Linux的命令行界面通常使用bash（Bourne Again Shell）作为默认的shell，bash是一种解释器，它可以解释和执行用户输入的命令。</p>
+<h2 id="4-Linux的基本命令"><a href="#4-Linux的基本命令" class="headerlink" title="4. Linux的基本命令"></a>4. Linux的基本命令</h2><p>现在，让我们来学习一些Linux的基本命令，这些命令是使用Linux的基础，掌握它们可以帮助你高效地完成各种任务。</p>
+<h3 id="4-1-文件和目录操作命令"><a href="#4-1-文件和目录操作命令" class="headerlink" title="4.1 文件和目录操作命令"></a>4.1 文件和目录操作命令</h3><h4 id="ls：列出目录内容"><a href="#ls：列出目录内容" class="headerlink" title="ls：列出目录内容"></a>ls：列出目录内容</h4><p><code>ls</code>命令用于列出目录中的文件和子目录。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ls</span> [选项] [目录]</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-l</code>：以长格式显示文件和目录的详细信息</li>
+<li><code>-a</code>：显示所有文件和目录，包括隐藏文件（以.开头的文件）</li>
+<li><code>-h</code>：以人类可读的格式显示文件大小（如KB、MB、GB）</li>
+<li><code>-t</code>：按修改时间排序，最新的文件排在前面</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 列出当前目录的内容</span></span><br><span class="line"><span class="built_in">ls</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以长格式显示当前目录的内容</span></span><br><span class="line"><span class="built_in">ls</span> -l</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示所有文件和目录，包括隐藏文件</span></span><br><span class="line"><span class="built_in">ls</span> -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以人类可读的格式显示文件大小</span></span><br><span class="line"><span class="built_in">ls</span> -lh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出指定目录的内容</span></span><br><span class="line"><span class="built_in">ls</span> /home/user/Documents</span><br></pre></td></tr></table></figure>
+
+<h4 id="cd：切换目录"><a href="#cd：切换目录" class="headerlink" title="cd：切换目录"></a>cd：切换目录</h4><p><code>cd</code>命令用于切换当前工作目录。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> [目录]</span><br></pre></td></tr></table></figure>
+
+<p><strong>特殊目录</strong>：</p>
+<ul>
+<li><code>~</code>：用户的主目录</li>
+<li><code>.</code>：当前目录</li>
+<li><code>..</code>：父目录</li>
+<li><code>-</code>：上一个工作目录</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 切换到用户的主目录</span></span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到当前目录的子目录Documents</span></span><br><span class="line"><span class="built_in">cd</span> Documents</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到父目录</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到上一个工作目录</span></span><br><span class="line"><span class="built_in">cd</span> -</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到根目录</span></span><br><span class="line"><span class="built_in">cd</span> /</span><br></pre></td></tr></table></figure>
+
+<h4 id="pwd：显示当前工作目录"><a href="#pwd：显示当前工作目录" class="headerlink" title="pwd：显示当前工作目录"></a>pwd：显示当前工作目录</h4><p><code>pwd</code>命令用于显示当前工作目录的绝对路径。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示当前工作目录的绝对路径</span></span><br><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="mkdir：创建目录"><a href="#mkdir：创建目录" class="headerlink" title="mkdir：创建目录"></a>mkdir：创建目录</h4><p><code>mkdir</code>命令用于创建新的目录。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> [选项] 目录名</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-p</code>：递归创建目录，如果父目录不存在，会一起创建</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个名为test的目录</span></span><br><span class="line"><span class="built_in">mkdir</span> <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归创建目录，创建dir1/dir2/dir3</span></span><br><span class="line"><span class="built_in">mkdir</span> -p dir1/dir2/dir3</span><br></pre></td></tr></table></figure>
+
+<h4 id="rm：删除文件或目录"><a href="#rm：删除文件或目录" class="headerlink" title="rm：删除文件或目录"></a>rm：删除文件或目录</h4><p><code>rm</code>命令用于删除文件或目录。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> [选项] 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-r</code>：递归删除目录及其内容</li>
+<li><code>-f</code>：强制删除，不提示确认</li>
+<li><code>-i</code>：交互式删除，删除前提示确认</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除一个名为test.txt的文件</span></span><br><span class="line"><span class="built_in">rm</span> test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归删除一个名为test的目录及其内容</span></span><br><span class="line"><span class="built_in">rm</span> -r <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制删除一个名为test的目录及其内容，不提示确认</span></span><br><span class="line"><span class="built_in">rm</span> -rf <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="cp：复制文件或目录"><a href="#cp：复制文件或目录" class="headerlink" title="cp：复制文件或目录"></a>cp：复制文件或目录</h4><p><code>cp</code>命令用于复制文件或目录。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> [选项] 源文件或目录 目标文件或目录</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-r</code>：递归复制目录及其内容</li>
+<li><code>-i</code>：交互式复制，目标文件已存在时提示确认</li>
+<li><code>-a</code>：归档复制，保留文件的所有属性（包括权限、时间戳等）</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 复制test.txt文件到backup目录</span></span><br><span class="line"><span class="built_in">cp</span> test.txt backup/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制test.txt文件到backup目录，并改名为test_backup.txt</span></span><br><span class="line"><span class="built_in">cp</span> test.txt backup/test_backup.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归复制test目录及其内容到backup目录</span></span><br><span class="line"><span class="built_in">cp</span> -r <span class="built_in">test</span> backup/</span><br></pre></td></tr></table></figure>
+
+<h4 id="mv：移动或重命名文件或目录"><a href="#mv：移动或重命名文件或目录" class="headerlink" title="mv：移动或重命名文件或目录"></a>mv：移动或重命名文件或目录</h4><p><code>mv</code>命令用于移动文件或目录，也可以用于重命名文件或目录。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mv</span> [选项] 源文件或目录 目标文件或目录</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-i</code>：交互式移动，目标文件已存在时提示确认</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 移动test.txt文件到backup目录</span></span><br><span class="line"><span class="built_in">mv</span> test.txt backup/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将test.txt文件重命名为new_test.txt</span></span><br><span class="line"><span class="built_in">mv</span> test.txt new_test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将test目录重命名为new_test</span></span><br><span class="line"><span class="built_in">mv</span> <span class="built_in">test</span> new_test</span><br></pre></td></tr></table></figure>
+
+<h4 id="touch：创建空文件或更新文件时间戳"><a href="#touch：创建空文件或更新文件时间戳" class="headerlink" title="touch：创建空文件或更新文件时间戳"></a>touch：创建空文件或更新文件时间戳</h4><p><code>touch</code>命令用于创建空文件或更新文件的访问时间和修改时间。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> 文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个名为test.txt的空文件</span></span><br><span class="line"><span class="built_in">touch</span> test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新test.txt文件的时间戳</span></span><br><span class="line"><span class="built_in">touch</span> test.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="cat：查看文件内容"><a href="#cat：查看文件内容" class="headerlink" title="cat：查看文件内容"></a>cat：查看文件内容</h4><p><code>cat</code>命令用于查看文件的全部内容，适合查看小文件。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> [选项] 文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-n</code>：显示行号</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看test.txt文件的内容</span></span><br><span class="line"><span class="built_in">cat</span> test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看test.txt文件的内容，并显示行号</span></span><br><span class="line"><span class="built_in">cat</span> -n test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将多个文件的内容合并后查看</span></span><br><span class="line"><span class="built_in">cat</span> file1.txt file2.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="less：分页查看文件内容"><a href="#less：分页查看文件内容" class="headerlink" title="less：分页查看文件内容"></a>less：分页查看文件内容</h4><p><code>less</code>命令用于分页查看文件的内容，适合查看大文件。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">less 文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用操作</strong>：</p>
+<ul>
+<li>空格键：向下翻页</li>
+<li>回车键：向下翻一行</li>
+<li>b键：向上翻页</li>
+<li>q键：退出less</li>
+<li>&#x2F;关键词：在文件中搜索关键词，n键跳到下一个匹配，N键跳到上一个匹配</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分页查看test.txt文件的内容</span></span><br><span class="line">less test.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="head：查看文件的前几行"><a href="#head：查看文件的前几行" class="headerlink" title="head：查看文件的前几行"></a>head：查看文件的前几行</h4><p><code>head</code>命令用于查看文件的前几行内容。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">head</span> [选项] 文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-n</code>：指定要查看的行数，默认为10行</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看test.txt文件的前10行内容</span></span><br><span class="line"><span class="built_in">head</span> test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看test.txt文件的前5行内容</span></span><br><span class="line"><span class="built_in">head</span> -n 5 test.txt</span><br></pre></td></tr></table></figure>
+
+<h4 id="tail：查看文件的后几行"><a href="#tail：查看文件的后几行" class="headerlink" title="tail：查看文件的后几行"></a>tail：查看文件的后几行</h4><p><code>tail</code>命令用于查看文件的后几行内容。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tail</span> [选项] 文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-n</code>：指定要查看的行数，默认为10行</li>
+<li><code>-f</code>：实时显示文件的新内容，通常用于查看日志文件</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看test.txt文件的后10行内容</span></span><br><span class="line"><span class="built_in">tail</span> test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看test.txt文件的后5行内容</span></span><br><span class="line"><span class="built_in">tail</span> -n 5 test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时查看日志文件的新内容</span></span><br><span class="line"><span class="built_in">tail</span> -f /var/log/syslog</span><br></pre></td></tr></table></figure>
+
+<h3 id="思考问题-2"><a href="#思考问题-2" class="headerlink" title="思考问题"></a>思考问题</h3><details>
+<summary>Linux中常用的文件和目录操作命令有哪些？它们的功能分别是什么？</summary>
+
+<p>Linux中常用的文件和目录操作命令及其功能如下：</p>
+<ol>
+<li><strong>ls</strong>：列出目录中的文件和子目录，可以显示文件的详细信息、隐藏文件等。</li>
+<li><strong>cd</strong>：切换当前工作目录，可以切换到用户主目录、父目录、上一个工作目录等。</li>
+<li><strong>pwd</strong>：显示当前工作目录的绝对路径。</li>
+<li><strong>mkdir</strong>：创建新的目录，可以递归创建多级目录。</li>
+<li><strong>rm</strong>：删除文件或目录，可以递归删除目录及其内容，也可以强制删除。</li>
+<li><strong>cp</strong>：复制文件或目录，可以递归复制目录及其内容，也可以保留文件的所有属性。</li>
+<li><strong>mv</strong>：移动文件或目录，也可以用于重命名文件或目录。</li>
+<li><strong>touch</strong>：创建空文件或更新文件的访问时间和修改时间。</li>
+<li><strong>cat</strong>：查看文件的全部内容，适合查看小文件。</li>
+<li><strong>less</strong>：分页查看文件的内容，适合查看大文件，支持搜索、翻页等操作。</li>
+<li><strong>head</strong>：查看文件的前几行内容，可以指定行数。</li>
+<li><strong>tail</strong>：查看文件的后几行内容，可以指定行数，也可以实时显示文件的新内容。</li>
+<li><strong>find</strong>：按条件查找文件和目录，可以按名称、大小、类型、权限等条件查找。</li>
+<li><strong>grep</strong>：在文件中搜索指定的字符串，可以使用正则表达式。</li>
+<li><strong>file</strong>：查看文件的类型。</li>
+<li><strong>ln</strong>：创建链接文件，包括硬链接和符号链接。</li>
+</ol>
+<p>这些命令是使用Linux的基础，掌握它们可以帮助你高效地管理和操作文件和目录。在实际使用中，你可以根据需要组合使用这些命令，以完成更复杂的任务。例如，你可以使用<code>ls -l | grep &quot;test&quot;</code>来列出当前目录中包含”test”的文件和目录的详细信息，使用<code>find / -name &quot;*.txt&quot;</code>来查找根目录下所有扩展名为.txt的文件。</p>
+</details>
+
+<h3 id="4-2-系统信息和管理命令"><a href="#4-2-系统信息和管理命令" class="headerlink" title="4.2 系统信息和管理命令"></a>4.2 系统信息和管理命令</h3><h4 id="uname：显示系统信息"><a href="#uname：显示系统信息" class="headerlink" title="uname：显示系统信息"></a>uname：显示系统信息</h4><p><code>uname</code>命令用于显示系统的基本信息，如内核版本、操作系统类型等。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">uname</span> [选项]</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-a</code>：显示所有系统信息</li>
+<li><code>-r</code>：显示内核版本</li>
+<li><code>-m</code>：显示机器硬件名称</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示所有系统信息</span></span><br><span class="line"><span class="built_in">uname</span> -a</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示内核版本</span></span><br><span class="line"><span class="built_in">uname</span> -r</span><br></pre></td></tr></table></figure>
+
+<h4 id="top：显示进程信息"><a href="#top：显示进程信息" class="headerlink" title="top：显示进程信息"></a>top：显示进程信息</h4><p><code>top</code>命令用于实时显示系统的进程信息，如CPU使用率、内存使用率、进程列表等。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用操作</strong>：</p>
+<ul>
+<li>q键：退出top</li>
+<li>k键：终止指定的进程</li>
+<li>空格键：立即刷新显示</li>
+<li>P键：按CPU使用率排序</li>
+<li>M键：按内存使用率排序</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实时显示系统的进程信息</span></span><br><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<h4 id="ps：显示当前进程状态"><a href="#ps：显示当前进程状态" class="headerlink" title="ps：显示当前进程状态"></a>ps：显示当前进程状态</h4><p><code>ps</code>命令用于显示当前系统的进程状态。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps [选项]</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-aux</code>：显示所有用户的所有进程的详细信息</li>
+<li><code>-ef</code>：显示所有进程的详细信息</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示所有用户的所有进程的详细信息</span></span><br><span class="line">ps -aux</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找特定进程</span></span><br><span class="line">ps -aux | grep <span class="string">&quot;nginx&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="df：显示磁盘使用情况"><a href="#df：显示磁盘使用情况" class="headerlink" title="df：显示磁盘使用情况"></a>df：显示磁盘使用情况</h4><p><code>df</code>命令用于显示文件系统的磁盘使用情况，如总空间、已用空间、可用空间等。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">df</span> [选项]</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-h</code>：以人类可读的格式显示磁盘使用情况</li>
+<li><code>-T</code>：显示文件系统类型</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以人类可读的格式显示磁盘使用情况</span></span><br><span class="line"><span class="built_in">df</span> -h</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示文件系统类型</span></span><br><span class="line"><span class="built_in">df</span> -T</span><br></pre></td></tr></table></figure>
+
+<h4 id="free：显示内存使用情况"><a href="#free：显示内存使用情况" class="headerlink" title="free：显示内存使用情况"></a>free：显示内存使用情况</h4><p><code>free</code>命令用于显示系统的内存使用情况，如总内存、已用内存、空闲内存等。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">free [选项]</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-h</code>：以人类可读的格式显示内存使用情况</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 以人类可读的格式显示内存使用情况</span></span><br><span class="line">free -h</span><br></pre></td></tr></table></figure>
+
+<h4 id="ifconfig-ip：显示或配置网络接口"><a href="#ifconfig-ip：显示或配置网络接口" class="headerlink" title="ifconfig&#x2F;ip：显示或配置网络接口"></a>ifconfig&#x2F;ip：显示或配置网络接口</h4><p><code>ifconfig</code>和<code>ip</code>命令用于显示或配置网络接口的信息，如IP地址、子网掩码、MAC地址等。<code>ifconfig</code>是较旧的命令，<code>ip</code>是较新的命令，功能更强大。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ifconfig [接口] [选项]</span><br><span class="line">ip [选项] 命令 [参数]</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示所有网络接口的信息</span></span><br><span class="line">ifconfig</span><br><span class="line">ip addr show</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示特定网络接口的信息</span></span><br><span class="line">ifconfig eth0</span><br><span class="line">ip addr show eth0</span><br></pre></td></tr></table></figure>
+
+<h4 id="ping：测试网络连接"><a href="#ping：测试网络连接" class="headerlink" title="ping：测试网络连接"></a>ping：测试网络连接</h4><p><code>ping</code>命令用于测试与另一个主机的网络连接是否正常。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping [选项] 主机名或IP地址</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-c</code>：指定ping的次数</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试与百度的网络连接</span></span><br><span class="line">ping www.baidu.com</span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试与192.168.1.1的网络连接，ping 4次</span></span><br><span class="line">ping -c 4 192.168.1.1</span><br></pre></td></tr></table></figure>
+
+<h4 id="netstat：显示网络状态"><a href="#netstat：显示网络状态" class="headerlink" title="netstat：显示网络状态"></a>netstat：显示网络状态</h4><p><code>netstat</code>命令用于显示网络状态信息，如网络连接、路由表、接口统计等。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat [选项]</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-t</code>：显示TCP连接</li>
+<li><code>-u</code>：显示UDP连接</li>
+<li><code>-l</code>：显示监听状态的连接</li>
+<li><code>-n</code>：显示数字地址，不进行域名解析</li>
+<li><code>-p</code>：显示进程ID和程序名称</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示所有TCP和UDP连接</span></span><br><span class="line">netstat -tuln</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示所有活动的网络连接及其对应的进程</span></span><br><span class="line">netstat -tulnp</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-3-用户和权限管理命令"><a href="#4-3-用户和权限管理命令" class="headerlink" title="4.3 用户和权限管理命令"></a>4.3 用户和权限管理命令</h3><h4 id="useradd：添加用户"><a href="#useradd：添加用户" class="headerlink" title="useradd：添加用户"></a>useradd：添加用户</h4><p><code>useradd</code>命令用于创建新的用户。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd [选项] 用户名</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-m</code>：自动创建用户的主目录</li>
+<li><code>-s</code>：指定用户的登录shell</li>
+<li><code>-g</code>：指定用户的初始组</li>
+<li><code>-G</code>：指定用户的附加组</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个名为testuser的用户，并自动创建其主目录</span></span><br><span class="line">useradd -m testuser</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个名为testuser的用户，指定其登录shell为/bin/bash</span></span><br><span class="line">useradd -m -s /bin/bash testuser</span><br></pre></td></tr></table></figure>
+
+<h4 id="passwd：设置或修改用户密码"><a href="#passwd：设置或修改用户密码" class="headerlink" title="passwd：设置或修改用户密码"></a>passwd：设置或修改用户密码</h4><p><code>passwd</code>命令用于设置或修改用户的密码。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd [选项] [用户名]</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-l</code>：锁定用户账户</li>
+<li><code>-u</code>：解锁用户账户</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改当前用户的密码</span></span><br><span class="line">passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改testuser用户的密码</span></span><br><span class="line">passwd testuser</span><br><span class="line"></span><br><span class="line"><span class="comment"># 锁定testuser用户账户</span></span><br><span class="line">passwd -l testuser</span><br><span class="line"></span><br><span class="line"><span class="comment"># 解锁testuser用户账户</span></span><br><span class="line">passwd -u testuser</span><br></pre></td></tr></table></figure>
+
+<h4 id="userdel：删除用户"><a href="#userdel：删除用户" class="headerlink" title="userdel：删除用户"></a>userdel：删除用户</h4><p><code>userdel</code>命令用于删除用户。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel [选项] 用户名</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-r</code>：删除用户的同时，删除其主目录和邮件目录</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除testuser用户，但保留其主目录</span></span><br><span class="line">userdel testuser</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除testuser用户，并删除其主目录</span></span><br><span class="line">userdel -r testuser</span><br></pre></td></tr></table></figure>
+
+<h4 id="groupadd：添加组"><a href="#groupadd：添加组" class="headerlink" title="groupadd：添加组"></a>groupadd：添加组</h4><p><code>groupadd</code>命令用于创建新的组。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupadd [选项] 组名</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个名为testgroup的组</span></span><br><span class="line">groupadd testgroup</span><br></pre></td></tr></table></figure>
+
+<h4 id="groupdel：删除组"><a href="#groupdel：删除组" class="headerlink" title="groupdel：删除组"></a>groupdel：删除组</h4><p><code>groupdel</code>命令用于删除组。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">groupdel 组名</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除testgroup组</span></span><br><span class="line">groupdel testgroup</span><br></pre></td></tr></table></figure>
+
+<h4 id="chown：修改文件或目录的所有者"><a href="#chown：修改文件或目录的所有者" class="headerlink" title="chown：修改文件或目录的所有者"></a>chown：修改文件或目录的所有者</h4><p><code>chown</code>命令用于修改文件或目录的所有者和所属组。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chown</span> [选项] 所有者[:所属组] 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-R</code>：递归修改目录及其内容的所有者和所属组</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将test.txt文件的所有者改为testuser</span></span><br><span class="line"><span class="built_in">chown</span> testuser test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将test.txt文件的所有者改为testuser，所属组改为testgroup</span></span><br><span class="line"><span class="built_in">chown</span> testuser:testgroup test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归修改test目录及其内容的所有者为testuser</span></span><br><span class="line"><span class="built_in">chown</span> -R testuser <span class="built_in">test</span>/</span><br></pre></td></tr></table></figure>
+
+<h4 id="chmod：修改文件或目录的权限"><a href="#chmod：修改文件或目录的权限" class="headerlink" title="chmod：修改文件或目录的权限"></a>chmod：修改文件或目录的权限</h4><p><code>chmod</code>命令用于修改文件或目录的权限。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> [选项] 权限 文件或目录</span><br></pre></td></tr></table></figure>
+
+<p><strong>权限的表示方式</strong>：</p>
+<ul>
+<li>字符表示：<code>u</code>（所有者）、<code>g</code>（所属组）、<code>o</code>（其他用户）、<code>a</code>（所有用户），<code>+</code>（添加权限）、<code>-</code>（移除权限）、<code>=</code>（设置权限），<code>r</code>（读）、<code>w</code>（写）、<code>x</code>（执行）</li>
+<li>数字表示：<code>r=4</code>，<code>w=2</code>，<code>x=1</code>，每组权限的数字是三种权限的和</li>
+</ul>
+<p><strong>常用选项</strong>：</p>
+<ul>
+<li><code>-R</code>：递归修改目录及其内容的权限</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 给test.txt文件的所有者添加执行权限</span></span><br><span class="line"><span class="built_in">chmod</span> u+x test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除test.txt文件的其他用户的写权限</span></span><br><span class="line"><span class="built_in">chmod</span> o-w test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置test.txt文件的权限为所有者可读可写可执行，所属组可读可执行，其他用户可读</span></span><br><span class="line"><span class="built_in">chmod</span> 754 test.txt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 递归修改test目录及其内容的权限为755</span></span><br><span class="line"><span class="built_in">chmod</span> -R 755 <span class="built_in">test</span>/</span><br></pre></td></tr></table></figure>
+
+<h3 id="思考问题-3"><a href="#思考问题-3" class="headerlink" title="思考问题"></a>思考问题</h3><details>
+<summary>Linux中如何管理用户和权限？为什么权限管理在Linux中如此重要？</summary>
+
+<p>在Linux中，管理用户和权限主要通过以下命令和概念来实现：</p>
+<ol>
+<li><p><strong>用户管理</strong>：</p>
+<ul>
+<li><code>useradd</code>：创建新用户</li>
+<li><code>passwd</code>：设置或修改用户密码</li>
+<li><code>userdel</code>：删除用户</li>
+<li><code>usermod</code>：修改用户属性</li>
+<li><code>/etc/passwd</code>：存储用户账户信息的文件</li>
+<li><code>/etc/shadow</code>：存储用户密码信息的文件</li>
+</ul>
+</li>
+<li><p><strong>组管理</strong>：</p>
+<ul>
+<li><code>groupadd</code>：创建新组</li>
+<li><code>groupdel</code>：删除组</li>
+<li><code>groupmod</code>：修改组属性</li>
+<li><code>gpasswd</code>：管理组密码和组成员</li>
+<li><code>/etc/group</code>：存储组信息的文件</li>
+</ul>
+</li>
+<li><p><strong>权限管理</strong>：</p>
+<ul>
+<li><code>chown</code>：修改文件或目录的所有者和所属组</li>
+<li><code>chmod</code>：修改文件或目录的权限</li>
+<li><code>chgrp</code>：修改文件或目录的所属组</li>
+<li>文件权限的表示：读（r）、写（w）、执行（x），所有者权限、所属组权限、其他用户权限</li>
+</ul>
+</li>
+</ol>
+<p>权限管理在Linux中如此重要，主要有以下几个原因：</p>
+<ol>
+<li><p><strong>安全性</strong>：Linux是一个多用户操作系统，权限管理可以确保不同的用户只能访问和修改自己有权限的文件和目录，防止未经授权的访问和操作，提高系统的安全性。</p>
+</li>
+<li><p><strong>数据保护</strong>：通过设置适当的权限，可以防止重要数据被意外删除或修改，保护数据的完整性和可用性。</p>
+</li>
+<li><p><strong>责任分离</strong>：在多用户环境中，权限管理可以实现责任分离，确保每个用户只能在自己的职责范围内工作，避免越权操作。</p>
+</li>
+<li><p><strong>系统稳定性</strong>：通过限制普通用户的权限，可以防止普通用户误操作或恶意操作对系统造成损坏，提高系统的稳定性和可靠性。</p>
+</li>
+<li><p><strong>资源分配</strong>：权限管理可以控制用户对系统资源（如文件、目录、设备等）的访问和使用，实现资源的合理分配和利用。</p>
+</li>
+</ol>
+<p>总之，权限管理是Linux系统安全和稳定运行的重要保障，也是系统管理员的重要工作内容之一。掌握权限管理的相关知识和技能，对于维护Linux系统的安全和稳定至关重要。</p>
+</details>
+
+<h3 id="4-4-软件包管理命令"><a href="#4-4-软件包管理命令" class="headerlink" title="4.4 软件包管理命令"></a>4.4 软件包管理命令</h3><p>Linux的软件包管理系统用于安装、升级、卸载和管理软件包。不同的Linux发行版使用不同的软件包管理系统，以下是一些常见的软件包管理命令。</p>
+<h4 id="Ubuntu-Debian（apt）"><a href="#Ubuntu-Debian（apt）" class="headerlink" title="Ubuntu&#x2F;Debian（apt）"></a>Ubuntu&#x2F;Debian（apt）</h4><p><code>apt</code>（Advanced Package Tool）是Ubuntu、Debian等基于Debian的发行版使用的软件包管理工具。</p>
+<p><strong>常用命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包列表</span></span><br><span class="line">apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级已安装的软件包</span></span><br><span class="line">apt upgrade</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装软件包</span></span><br><span class="line">apt install 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载软件包</span></span><br><span class="line">apt remove 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 彻底卸载软件包（包括配置文件）</span></span><br><span class="line">apt purge 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索软件包</span></span><br><span class="line">apt search 关键词</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看软件包的详细信息</span></span><br><span class="line">apt show 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理不再需要的依赖包</span></span><br><span class="line">apt autoremove</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理下载的软件包缓存</span></span><br><span class="line">apt autoclean</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包列表</span></span><br><span class="line">apt update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装nginx web服务器</span></span><br><span class="line">apt install nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载nginx web服务器</span></span><br><span class="line">apt remove nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="CentOS-RHEL（yum-dnf）"><a href="#CentOS-RHEL（yum-dnf）" class="headerlink" title="CentOS&#x2F;RHEL（yum&#x2F;dnf）"></a>CentOS&#x2F;RHEL（yum&#x2F;dnf）</h4><p><code>yum</code>（Yellowdog Updater, Modified）是CentOS 7及以前版本使用的软件包管理工具，<code>dnf</code>（Dandified Yum）是CentOS 8及以后版本和Fedora使用的软件包管理工具。</p>
+<p><strong>常用命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包列表</span></span><br><span class="line">yum check-update</span><br><span class="line">dnf check-update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 升级已安装的软件包</span></span><br><span class="line">yum update</span><br><span class="line">dnf update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装软件包</span></span><br><span class="line">yum install 软件包名</span><br><span class="line">dnf install 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载软件包</span></span><br><span class="line">yum remove 软件包名</span><br><span class="line">dnf remove 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索软件包</span></span><br><span class="line">yum search 关键词</span><br><span class="line">dnf search 关键词</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看软件包的详细信息</span></span><br><span class="line">yum info 软件包名</span><br><span class="line">dnf info 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理不再需要的依赖包</span></span><br><span class="line">yum autoremove</span><br><span class="line">dnf autoremove</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理下载的软件包缓存</span></span><br><span class="line">yum clean all</span><br><span class="line">dnf clean all</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包列表</span></span><br><span class="line">yum check-update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装nginx web服务器</span></span><br><span class="line">yum install nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载nginx web服务器</span></span><br><span class="line">yum remove nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="Arch-Linux（pacman）"><a href="#Arch-Linux（pacman）" class="headerlink" title="Arch Linux（pacman）"></a>Arch Linux（pacman）</h4><p><code>pacman</code>是Arch Linux及其衍生发行版使用的软件包管理工具。</p>
+<p><strong>常用命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包列表并升级已安装的软件包</span></span><br><span class="line">pacman -Syu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装软件包</span></span><br><span class="line">pacman -S 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载软件包</span></span><br><span class="line">pacman -R 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 彻底卸载软件包（包括依赖）</span></span><br><span class="line">pacman -Rns 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 搜索软件包</span></span><br><span class="line">pacman -Ss 关键词</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看软件包的详细信息</span></span><br><span class="line">pacman -Si 软件包名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 清理下载的软件包缓存</span></span><br><span class="line">pacman -Sc</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 更新软件包列表并升级已安装的软件包</span></span><br><span class="line">pacman -Syu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装nginx web服务器</span></span><br><span class="line">pacman -S nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载nginx web服务器</span></span><br><span class="line">pacman -R nginx</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-Linux的shell脚本编程"><a href="#5-Linux的shell脚本编程" class="headerlink" title="5. Linux的shell脚本编程"></a>5. Linux的shell脚本编程</h2><p>shell脚本是一种为shell编写的脚本程序，它可以将一系列的Linux命令组合在一起，形成一个可执行的文件，从而实现自动化任务。学习shell脚本编程可以帮助你更高效地使用Linux。</p>
+<h3 id="5-1-shell脚本的基本结构"><a href="#5-1-shell脚本的基本结构" class="headerlink" title="5.1 shell脚本的基本结构"></a>5.1 shell脚本的基本结构</h3><p>一个简单的shell脚本通常包含以下几个部分：</p>
+<ol>
+<li><strong>shebang行</strong>：指定解释器，通常是<code>#!/bin/bash</code></li>
+<li><strong>注释</strong>：以<code>#</code>开头的行，用于解释脚本的功能和逻辑</li>
+<li><strong>命令</strong>：一系列的Linux命令</li>
+<li><strong>变量</strong>：用于存储数据</li>
+<li><strong>控制结构</strong>：如条件语句、循环语句等</li>
+<li><strong>函数</strong>：用于封装可重用的代码</li>
+</ol>
+<h3 id="5-2-编写第一个shell脚本"><a href="#5-2-编写第一个shell脚本" class="headerlink" title="5.2 编写第一个shell脚本"></a>5.2 编写第一个shell脚本</h3><p>下面，让我们来编写一个简单的shell脚本，它的功能是显示当前日期和时间，并列出当前目录的内容。</p>
+<p><strong>步骤1：创建脚本文件</strong></p>
+<p>使用任何文本编辑器（如vi、nano、gedit等）创建一个名为<code>hello.sh</code>的文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用vi编辑器创建hello.sh文件</span></span><br><span class="line">vi hello.sh</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤2：编写脚本内容</strong></p>
+<p>在<code>hello.sh</code>文件中输入以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 这是一个简单的shell脚本</span></span><br><span class="line"><span class="comment"># 显示当前日期和时间</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;当前日期和时间：<span class="subst">$(date)</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示当前目录的内容</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\n当前目录的内容：&quot;</span></span><br><span class="line"><span class="built_in">ls</span> -l</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤3：设置脚本的执行权限</strong></p>
+<p>使用<code>chmod</code>命令给脚本文件添加执行权限。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x hello.sh</span><br></pre></td></tr></table></figure>
+
+<p><strong>步骤4：运行脚本</strong></p>
+<p>使用<code>./</code>前缀运行脚本文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hello.sh</span><br></pre></td></tr></table></figure>
+
+<p>运行结果类似于：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">当前日期和时间：2024年 12月 07日 星期六 11:00:00 CST</span><br><span class="line"></span><br><span class="line">当前目录的内容：</span><br><span class="line">total 16</span><br><span class="line">drwxr-xr-x 2 user user 4096 12月  7 10:50 Desktop</span><br><span class="line">drwxr-xr-x 2 user user 4096 12月  7 10:50 Documents</span><br><span class="line">-rwxr-xr-x 1 user user  150 12月  7 11:00 hello.sh</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-3-shell脚本的变量"><a href="#5-3-shell脚本的变量" class="headerlink" title="5.3 shell脚本的变量"></a>5.3 shell脚本的变量</h3><p>在shell脚本中，变量用于存储数据。shell变量不需要声明类型，可以直接赋值和使用。</p>
+<p><strong>变量的赋值和使用</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 变量赋值（注意：=两边不能有空格）</span></span><br><span class="line">name=<span class="string">&quot;Linux&quot;</span></span><br><span class="line">version=5.15</span><br><span class="line"></span><br><span class="line"><span class="comment"># 变量使用（使用$符号引用变量）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;操作系统：<span class="variable">$name</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;内核版本：<span class="variable">$version</span>&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 命令替换（将命令的输出赋值给变量）</span></span><br><span class="line">date_today=$(<span class="built_in">date</span>)</span><br><span class="line">files_count=$(<span class="built_in">ls</span> -l | <span class="built_in">wc</span> -l)</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;今天是：<span class="variable">$date_today</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;当前目录有<span class="variable">$files_count</span>个文件和目录&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 位置参数（脚本运行时传递的参数）</span></span><br><span class="line"><span class="comment"># $0：脚本名称</span></span><br><span class="line"><span class="comment"># $1, $2, ...：第一个参数，第二个参数，...</span></span><br><span class="line"><span class="comment"># $#：参数的个数</span></span><br><span class="line"><span class="comment"># $*：所有参数作为一个字符串</span></span><br><span class="line"><span class="comment"># $@：所有参数作为单独的字符串</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;脚本名称：<span class="variable">$0</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;第一个参数：<span class="variable">$1</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;第二个参数：<span class="variable">$2</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;参数个数：<span class="variable">$#</span>&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;所有参数：$*&quot;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;所有参数：<span class="variable">$@</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-4-shell脚本的控制结构"><a href="#5-4-shell脚本的控制结构" class="headerlink" title="5.4 shell脚本的控制结构"></a>5.4 shell脚本的控制结构</h3><p>shell脚本支持各种控制结构，如条件语句、循环语句等，用于控制脚本的执行流程。</p>
+<h4 id="条件语句（if-else）"><a href="#条件语句（if-else）" class="headerlink" title="条件语句（if-else）"></a>条件语句（if-else）</h4><p>条件语句用于根据条件执行不同的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较数字</span></span><br><span class="line">num1=10</span><br><span class="line">num2=20</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$num1</span> -eq <span class="variable">$num2</span> ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$num1</span> 等于 <span class="variable">$num2</span>&quot;</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$num1</span> -gt <span class="variable">$num2</span> ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$num1</span> 大于 <span class="variable">$num2</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$num1</span> 小于 <span class="variable">$num2</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 比较字符串</span></span><br><span class="line">str1=<span class="string">&quot;hello&quot;</span></span><br><span class="line">str2=<span class="string">&quot;world&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$str1</span>&quot;</span> = <span class="string">&quot;<span class="variable">$str2</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$str1</span> 等于 <span class="variable">$str2</span>&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$str1</span> 不等于 <span class="variable">$str2</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 检查文件是否存在</span></span><br><span class="line">file=<span class="string">&quot;test.txt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="variable">$file</span> ]; <span class="keyword">then</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;文件 <span class="variable">$file</span> 存在&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;文件 <span class="variable">$file</span> 不存在&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="循环语句（for、while）"><a href="#循环语句（for、while）" class="headerlink" title="循环语句（for、while）"></a>循环语句（for、while）</h4><p>循环语句用于重复执行一系列命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># for循环（遍历列表）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;for循环遍历列表：&quot;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> 1 2 3 4 5; <span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;数字：<span class="variable">$i</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># for循环（遍历文件）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\nfor循环遍历文件：&quot;</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> *; <span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;文件：<span class="variable">$file</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># for循环（C风格）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\nfor循环（C风格）：&quot;</span></span><br><span class="line"><span class="keyword">for</span> ((i=<span class="number">1</span>; i&lt;=<span class="number">5</span>; i++)); <span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;数字：<span class="variable">$i</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># while循环</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\nwhile循环：&quot;</span></span><br><span class="line">i=1</span><br><span class="line"><span class="keyword">while</span> [ <span class="variable">$i</span> -le 5 ]; <span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;数字：<span class="variable">$i</span>&quot;</span></span><br><span class="line">i=$((i+<span class="number">1</span>))</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># until循环（条件为假时执行）</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;\nuntil循环：&quot;</span></span><br><span class="line">i=1</span><br><span class="line"><span class="keyword">until</span> [ <span class="variable">$i</span> -gt 5 ]; <span class="keyword">do</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;数字：<span class="variable">$i</span>&quot;</span></span><br><span class="line">i=$((i+<span class="number">1</span>))</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="思考问题-4"><a href="#思考问题-4" class="headerlink" title="思考问题"></a>思考问题</h3><details>
+<summary>什么是shell脚本？学习shell脚本编程有什么好处？</summary>
+
+<p>shell脚本是一种为shell编写的脚本程序，它由一系列的Linux命令、控制结构和注释组成，可以被shell解释和执行。shell脚本是一种解释型语言，不需要编译，可以直接运行。</p>
+<p>学习shell脚本编程有以下几个好处：</p>
+<ol>
+<li><p><strong>自动化任务</strong>：shell脚本可以将一系列的Linux命令组合在一起，形成一个可执行的文件，从而实现自动化任务。例如，你可以编写一个shell脚本定期备份重要数据，或者清理系统垃圾文件等。</p>
+</li>
+<li><p><strong>提高工作效率</strong>：通过编写shell脚本，你可以将重复的、繁琐的工作自动化，从而节省时间和精力，提高工作效率。</p>
+</li>
+<li><p><strong>系统管理</strong>：shell脚本是系统管理员的重要工具，它可以帮助系统管理员管理和维护系统，如监控系统状态、管理用户和权限、安装和配置软件等。</p>
+</li>
+<li><p><strong>批处理</strong>：shell脚本可以用于批处理任务，如批量重命名文件、批量处理数据等。</p>
+</li>
+<li><p><strong>学习编程基础</strong>：shell脚本编程是学习其他编程语言的基础，它可以帮助你了解编程的基本概念，如变量、控制结构、函数等。</p>
+</li>
+<li><p><strong>跨平台</strong>：shell脚本可以在各种Linux发行版和Unix系统上运行，具有很好的跨平台性。</p>
+</li>
+<li><p><strong>简单易学</strong>：相比于其他编程语言，shell脚本的语法相对简单，容易学习和掌握。即使你没有编程经验，也可以快速上手shell脚本编程。</p>
+</li>
+</ol>
+<p>总之，学习shell脚本编程是提高Linux使用效率和系统管理能力的重要途径，也是学习编程的良好起点。无论是作为系统管理员、开发者，还是普通用户，掌握shell脚本编程都可以帮助你更好地使用和管理Linux系统。</p>
+</details>
+
+<h2 id="6-Linux的网络配置"><a href="#6-Linux的网络配置" class="headerlink" title="6. Linux的网络配置"></a>6. Linux的网络配置</h2><p>网络配置是Linux系统管理的重要组成部分，它涉及到IP地址、子网掩码、网关、DNS等网络参数的设置。正确的网络配置对于Linux系统的网络连接和通信至关重要。</p>
+<h3 id="6-1-网络接口配置"><a href="#6-1-网络接口配置" class="headerlink" title="6.1 网络接口配置"></a>6.1 网络接口配置</h3><p>Linux的网络接口配置可以通过命令行工具或配置文件来完成。以下是一些常用的网络接口配置方法。</p>
+<h4 id="使用ip命令配置网络接口"><a href="#使用ip命令配置网络接口" class="headerlink" title="使用ip命令配置网络接口"></a>使用ip命令配置网络接口</h4><p><code>ip</code>命令是Linux系统中用于配置网络接口的强大工具，它可以显示和配置网络接口的IP地址、子网掩码、网关等参数。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示所有网络接口的信息</span></span><br><span class="line">ip addr show</span><br><span class="line"></span><br><span class="line"><span class="comment"># 给网络接口配置IP地址和子网掩码</span></span><br><span class="line">ip addr add IP地址/子网掩码 dev 接口名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除网络接口的IP地址</span></span><br><span class="line">ip addr del IP地址/子网掩码 dev 接口名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用网络接口</span></span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> 接口名 up</span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁用网络接口</span></span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> 接口名 down</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加默认网关</span></span><br><span class="line">ip route add default via 网关IP dev 接口名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除默认网关</span></span><br><span class="line">ip route del default via 网关IP dev 接口名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示路由表</span></span><br><span class="line">ip route show</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 给eth0接口配置IP地址192.168.1.100，子网掩码255.255.255.0</span></span><br><span class="line">ip addr add 192.168.1.100/24 dev eth0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用eth0接口</span></span><br><span class="line">ip <span class="built_in">link</span> <span class="built_in">set</span> eth0 up</span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加默认网关192.168.1.1</span></span><br><span class="line">ip route add default via 192.168.1.1 dev eth0</span><br></pre></td></tr></table></figure>
+
+<h4 id="通过配置文件配置网络接口"><a href="#通过配置文件配置网络接口" class="headerlink" title="通过配置文件配置网络接口"></a>通过配置文件配置网络接口</h4><p>除了使用命令行工具，你还可以通过编辑网络配置文件来配置网络接口。不同的Linux发行版使用的网络配置文件可能不同。</p>
+<p><strong>Ubuntu&#x2F;Debian</strong>：<br>Ubuntu 18.04及以后版本使用Netplan来管理网络配置，配置文件位于<code>/etc/netplan/</code>目录下，通常是<code>01-netcfg.yaml</code>或<code>50-cloud-init.yaml</code>。</p>
+<p><strong>例子</strong>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/netplan/01-netcfg.yaml</span></span><br><span class="line"><span class="attr">network:</span></span><br><span class="line">  <span class="attr">version:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">renderer:</span> <span class="string">networkd</span></span><br><span class="line">  <span class="attr">ethernets:</span></span><br><span class="line">    <span class="attr">eth0:</span></span><br><span class="line">      <span class="attr">addresses:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span><span class="string">/24</span></span><br><span class="line">      <span class="attr">gateway4:</span> <span class="number">192.168</span><span class="number">.1</span><span class="number">.1</span></span><br><span class="line">      <span class="attr">nameservers:</span></span><br><span class="line">        <span class="attr">addresses:</span> [<span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span>, <span class="number">8.8</span><span class="number">.4</span><span class="number">.4</span>]</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后，使用以下命令应用配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netplan apply</span><br></pre></td></tr></table></figure>
+
+<p><strong>CentOS&#x2F;RHEL</strong>：<br>CentOS 7及以前版本使用<code>/etc/sysconfig/network-scripts/</code>目录下的配置文件来管理网络接口，配置文件的名称通常是<code>ifcfg-接口名</code>。</p>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># /etc/sysconfig/network-scripts/ifcfg-eth0</span></span><br><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=<span class="built_in">yes</span></span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=<span class="built_in">yes</span></span><br><span class="line">IPV6_AUTOCONF=<span class="built_in">yes</span></span><br><span class="line">IPV6_DEFROUTE=<span class="built_in">yes</span></span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">NAME=eth0</span><br><span class="line">UUID=5e8b4a3e-6c8a-4b4a-8c8a-4b4a8c8a4b4a</span><br><span class="line">DEVICE=eth0</span><br><span class="line">ONBOOT=<span class="built_in">yes</span></span><br><span class="line">IPADDR=192.168.1.100</span><br><span class="line">PREFIX=24</span><br><span class="line">GATEWAY=192.168.1.1</span><br><span class="line">DNS1=8.8.8.8</span><br><span class="line">DNS2=8.8.4.4</span><br></pre></td></tr></table></figure>
+
+<p>配置完成后，使用以下命令重启网络服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart network</span><br></pre></td></tr></table></figure>
+
+<p>CentOS 8及以后版本使用NetworkManager来管理网络配置，可以使用<code>nmcli</code>命令来配置网络接口。</p>
+<h3 id="6-2-DNS配置"><a href="#6-2-DNS配置" class="headerlink" title="6.2 DNS配置"></a>6.2 DNS配置</h3><p>DNS（Domain Name System）是用于将域名解析为IP地址的系统。在Linux中，DNS配置通常通过<code>/etc/resolv.conf</code>文件来完成。</p>
+<p><strong>编辑resolv.conf文件</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用vi编辑器编辑resolv.conf文件</span></span><br><span class="line">vi /etc/resolv.conf</span><br></pre></td></tr></table></figure>
+
+<p>在文件中添加DNS服务器的IP地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nameserver 8.8.8.8</span><br><span class="line">nameserver 8.8.4.4</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：在某些Linux发行版中，<code>/etc/resolv.conf</code>文件可能是由网络管理服务（如NetworkManager、systemd-resolved等）自动生成的，直接编辑该文件可能不会持久生效。在这种情况下，你需要通过相应的网络管理服务来配置DNS。</p>
+<h3 id="6-3-网络服务管理"><a href="#6-3-网络服务管理" class="headerlink" title="6.3 网络服务管理"></a>6.3 网络服务管理</h3><p>Linux的网络服务（如ssh、http、ftp等）可以通过systemd服务管理器来管理。</p>
+<p><strong>常用命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动网络服务</span></span><br><span class="line">systemctl start 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止网络服务</span></span><br><span class="line">systemctl stop 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启网络服务</span></span><br><span class="line">systemctl restart 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看网络服务的状态</span></span><br><span class="line">systemctl status 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置网络服务开机自启</span></span><br><span class="line">systemctl <span class="built_in">enable</span> 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁止网络服务开机自启</span></span><br><span class="line">systemctl <span class="built_in">disable</span> 服务名</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动ssh服务</span></span><br><span class="line">systemctl start ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看ssh服务的状态</span></span><br><span class="line">systemctl status ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置ssh服务开机自启</span></span><br><span class="line">systemctl <span class="built_in">enable</span> ssh</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-Linux的系统管理"><a href="#7-Linux的系统管理" class="headerlink" title="7. Linux的系统管理"></a>7. Linux的系统管理</h2><p>Linux的系统管理涉及到系统的启动、 shutdown、进程管理、服务管理、日志管理等多个方面。作为系统管理员，掌握这些系统管理技能对于维护Linux系统的正常运行至关重要。</p>
+<h3 id="7-1-系统启动和shutdown"><a href="#7-1-系统启动和shutdown" class="headerlink" title="7.1 系统启动和shutdown"></a>7.1 系统启动和shutdown</h3><p>Linux系统的启动和shutdown过程涉及到多个阶段和组件，了解这些过程可以帮助你更好地管理和维护系统。</p>
+<h4 id="系统启动过程"><a href="#系统启动过程" class="headerlink" title="系统启动过程"></a>系统启动过程</h4><p>Linux系统的启动过程通常包括以下几个阶段：</p>
+<ol>
+<li><strong>BIOS&#x2F;UEFI初始化</strong>：计算机通电后，首先运行BIOS&#x2F;UEFI固件，进行硬件自检和初始化。</li>
+<li><strong>引导加载程序</strong>：BIOS&#x2F;UEFI找到并加载引导加载程序（如GRUB）。</li>
+<li><strong>内核初始化</strong>：引导加载程序加载Linux内核，并将控制权转交给内核。</li>
+<li><strong>init进程&#x2F;系统初始化</strong>：内核启动后，会启动init进程（或systemd进程，现代Linux发行版通常使用systemd），init进程是系统的第一个进程，负责启动其他系统进程和服务。</li>
+<li><strong>运行级别&#x2F;目标</strong>：根据系统的运行级别（Runlevel）或目标（Target），启动相应的系统服务和应用程序。</li>
+<li><strong>登录界面</strong>：最后，启动登录管理器，显示登录界面，等待用户登录。</li>
+</ol>
+<h4 id="系统shutdown命令"><a href="#系统shutdown命令" class="headerlink" title="系统shutdown命令"></a>系统shutdown命令</h4><p>Linux系统提供了多个命令用于shutdown、重启或注销系统。</p>
+<p><strong>常用命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># shutdown系统（默认1分钟后shutdown）</span></span><br><span class="line">shutdown</span><br><span class="line"></span><br><span class="line"><span class="comment"># 立即shutdown系统</span></span><br><span class="line">shutdown -h now</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在指定时间shutdown系统（例如：12:00）</span></span><br><span class="line">shutdown -h 12:00</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启系统</span></span><br><span class="line">shutdown -r now</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取消shutdown计划</span></span><br><span class="line">shutdown -c</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启系统</span></span><br><span class="line">reboot</span><br><span class="line"></span><br><span class="line"><span class="comment"># 立即shutdown系统</span></span><br><span class="line">poweroff</span><br><span class="line"></span><br><span class="line"><span class="comment"># 注销当前用户</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line"><span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 立即shutdown系统</span></span><br><span class="line">shutdown -h now</span><br><span class="line"></span><br><span class="line"><span class="comment"># 立即重启系统</span></span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-2-进程管理"><a href="#7-2-进程管理" class="headerlink" title="7.2 进程管理"></a>7.2 进程管理</h3><p>进程是程序在执行过程中的实例。Linux系统的进程管理包括查看进程、终止进程、调度进程等。</p>
+<h4 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h4><p><code>ps</code>和<code>top</code>命令是查看进程的常用工具。</p>
+<p><strong>ps命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 显示当前用户的所有进程</span></span><br><span class="line">ps -u <span class="variable">$USER</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示所有进程的详细信息</span></span><br><span class="line">ps -aux</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以树状结构显示进程之间的关系</span></span><br><span class="line">ps -aux --forest</span><br></pre></td></tr></table></figure>
+
+<p><strong>top命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 实时显示进程信息</span></span><br><span class="line">top</span><br></pre></td></tr></table></figure>
+
+<h4 id="终止进程"><a href="#终止进程" class="headerlink" title="终止进程"></a>终止进程</h4><p>当进程出现异常或不再需要时，可以使用<code>kill</code>、<code>pkill</code>或<code>killall</code>命令来终止进程。</p>
+<p><strong>基本用法</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用进程ID终止进程</span></span><br><span class="line"><span class="built_in">kill</span> 进程ID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制终止进程</span></span><br><span class="line"><span class="built_in">kill</span> -9 进程ID</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据进程名终止进程</span></span><br><span class="line">pkill 进程名</span><br><span class="line">killall 进程名</span><br></pre></td></tr></table></figure>
+
+<p><strong>常用信号</strong>：</p>
+<ul>
+<li><code>SIGTERM</code>（15）：默认信号，要求进程优雅地终止</li>
+<li><code>SIGKILL</code>（9）：强制终止进程，进程无法捕获或忽略此信号</li>
+<li><code>SIGINT</code>（2）：中断信号，通常由Ctrl+C触发</li>
+</ul>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 终止进程ID为1234的进程</span></span><br><span class="line"><span class="built_in">kill</span> 1234</span><br><span class="line"></span><br><span class="line"><span class="comment"># 强制终止进程ID为1234的进程</span></span><br><span class="line"><span class="built_in">kill</span> -9 1234</span><br><span class="line"></span><br><span class="line"><span class="comment"># 终止所有名为nginx的进程</span></span><br><span class="line">pkill nginx</span><br><span class="line">killall nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-3-服务管理"><a href="#7-3-服务管理" class="headerlink" title="7.3 服务管理"></a>7.3 服务管理</h3><p>在现代Linux发行版中，systemd是默认的系统和服务管理器，它负责启动和管理系统服务。</p>
+<p><strong>常用命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动服务</span></span><br><span class="line">systemctl start 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止服务</span></span><br><span class="line">systemctl stop 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启服务</span></span><br><span class="line">systemctl restart 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载服务配置</span></span><br><span class="line">systemctl reload 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务状态</span></span><br><span class="line">systemctl status 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有服务</span></span><br><span class="line">systemctl list-units --<span class="built_in">type</span>=service</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置服务开机自启</span></span><br><span class="line">systemctl <span class="built_in">enable</span> 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 禁止服务开机自启</span></span><br><span class="line">systemctl <span class="built_in">disable</span> 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看服务是否开机自启</span></span><br><span class="line">systemctl is-enabled 服务名</span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动nginx服务</span></span><br><span class="line">systemctl start nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看nginx服务的状态</span></span><br><span class="line">systemctl status nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置nginx服务开机自启</span></span><br><span class="line">systemctl <span class="built_in">enable</span> nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-4-日志管理"><a href="#7-4-日志管理" class="headerlink" title="7.4 日志管理"></a>7.4 日志管理</h3><p>Linux系统的日志记录了系统运行过程中的各种事件和信息，对于系统管理和故障排查非常重要。</p>
+<h4 id="日志文件的位置"><a href="#日志文件的位置" class="headerlink" title="日志文件的位置"></a>日志文件的位置</h4><p>Linux系统的日志文件通常位于<code>/var/log/</code>目录下。</p>
+<p><strong>常见的日志文件</strong>：</p>
+<ul>
+<li><code>/var/log/syslog</code>或<code>/var/log/messages</code>：系统日志，记录系统的一般信息和错误</li>
+<li><code>/var/log/auth.log</code>或<code>/var/log/secure</code>：认证日志，记录用户登录、权限变更等信息</li>
+<li><code>/var/log/dmesg</code>：内核日志，记录内核启动和运行过程中的信息</li>
+<li><code>/var/log/boot.log</code>：启动日志，记录系统启动过程中的信息</li>
+<li><code>/var/log/cron</code>： cron日志，记录cron作业的执行情况</li>
+<li><code>/var/log/maillog</code>或<code>/var/log/mail.log</code>：邮件日志，记录邮件服务的运行情况</li>
+<li><code>/var/log/httpd</code>或<code>/var/log/nginx</code>：Web服务器日志，记录Web服务器的访问和错误信息</li>
+</ul>
+<h4 id="查看日志文件"><a href="#查看日志文件" class="headerlink" title="查看日志文件"></a>查看日志文件</h4><p><code>cat</code>、<code>less</code>、<code>tail</code>等命令是查看日志文件的常用工具。</p>
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看系统日志的最后100行</span></span><br><span class="line"><span class="built_in">tail</span> -n 100 /var/log/syslog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时查看系统日志的新内容</span></span><br><span class="line"><span class="built_in">tail</span> -f /var/log/syslog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用less分页查看系统日志</span></span><br><span class="line">less /var/log/syslog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在系统日志中搜索关键词</span></span><br><span class="line">grep <span class="string">&quot;error&quot;</span> /var/log/syslog</span><br></pre></td></tr></table></figure>
+
+<h4 id="journalctl命令"><a href="#journalctl命令" class="headerlink" title="journalctl命令"></a>journalctl命令</h4><p>在使用systemd的Linux发行版中，可以使用<code>journalctl</code>命令来查看和管理systemd日志。</p>
+<p><strong>常用命令</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看所有日志</span></span><br><span class="line">journalctl</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时查看新的日志</span></span><br><span class="line">journalctl -f</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定服务的日志</span></span><br><span class="line">journalctl -u 服务名</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看今天的日志</span></span><br><span class="line">journalctl --since today</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看指定时间范围内的日志</span></span><br><span class="line">journalctl --since <span class="string">&quot;2024-12-01&quot;</span> --<span class="keyword">until</span> <span class="string">&quot;2024-12-07&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 在日志中搜索关键词</span></span><br><span class="line">journalctl | grep <span class="string">&quot;error&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>例子</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看nginx服务的日志</span></span><br><span class="line">journalctl -u nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 实时查看nginx服务的新日志</span></span><br><span class="line">journalctl -u nginx -f</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查看今天的系统日志</span></span><br><span class="line">journalctl --since today</span><br></pre></td></tr></table></figure>
+
+<h3 id="思考问题-5"><a href="#思考问题-5" class="headerlink" title="思考问题"></a>思考问题</h3><details>
+<summary>Linux系统管理包括哪些方面？为什么系统管理对于Linux系统的运行至关重要？</summary>
+
+<p>Linux系统管理包括以下几个方面：</p>
+<ol>
+<li><strong>系统启动和shutdown管理</strong>：管理系统的启动过程、shutdown过程、重启、休眠等。</li>
+<li><strong>用户和权限管理</strong>：创建和管理用户账户、组、权限等。</li>
+<li><strong>文件系统管理</strong>：创建和管理文件系统、分区、挂载点等。</li>
+<li><strong>软件包管理</strong>：安装、升级、卸载和管理软件包。</li>
+<li><strong>网络配置和管理</strong>：配置网络接口、IP地址、子网掩码、网关、DNS等，管理网络服务。</li>
+<li><strong>进程管理</strong>：查看和管理系统进程，终止异常进程等。</li>
+<li><strong>服务管理</strong>：启动、停止、重启和管理系统服务。</li>
+<li><strong>日志管理</strong>：查看和分析系统日志，进行故障排查。</li>
+<li><strong>系统监控和性能调优</strong>：监控系统资源使用情况，优化系统性能。</li>
+<li><strong>备份和恢复</strong>：定期备份系统和数据，在需要时进行恢复。</li>
+<li><strong>安全管理</strong>：配置防火墙、更新系统补丁、设置安全策略等。</li>
+</ol>
+<p>系统管理对于Linux系统的运行至关重要，主要有以下几个原因：</p>
+<ol>
+<li><p><strong>系统稳定性</strong>：通过系统管理，可以确保Linux系统的各个组件正常运行，避免系统崩溃或故障。</p>
+</li>
+<li><p><strong>系统安全性</strong>：系统管理可以帮助管理员配置安全策略、更新系统补丁、管理用户和权限等，提高系统的安全性，防止未经授权的访问和攻击。</p>
+</li>
+<li><p><strong>系统性能</strong>：通过系统监控和性能调优，可以优化系统资源的使用，提高系统的性能和响应速度。</p>
+</li>
+<li><p><strong>数据完整性和可用性</strong>：通过备份和恢复策略，可以确保系统数据的完整性和可用性，防止数据丢失。</p>
+</li>
+<li><p><strong>服务可靠性</strong>：通过服务管理，可以确保系统服务的正常运行，提高服务的可靠性和可用性。</p>
+</li>
+<li><p><strong>问题排查和解决</strong>：系统管理技能可以帮助管理员快速定位和解决系统运行过程中出现的各种问题，减少系统 downtime。</p>
+</li>
+<li><p><strong>系统扩展和升级</strong>：随着业务需求的变化，系统管理可以帮助管理员扩展系统功能，升级系统组件，以适应新的需求。</p>
+</li>
+</ol>
+<p>总之，系统管理是Linux系统运行的重要保障，对于维护系统的稳定性、安全性、性能和可靠性至关重要。无论是作为系统管理员，还是作为Linux用户，掌握基本的系统管理技能都是非常必要的。</p>
+</details>
+
+<h2 id="8-如何学习Linux"><a href="#8-如何学习Linux" class="headerlink" title="8. 如何学习Linux"></a>8. 如何学习Linux</h2><p>学习Linux需要一定的方法和技巧，以下是一些建议，帮助你更有效地学习Linux。</p>
+<h3 id="8-1-选择合适的Linux发行版"><a href="#8-1-选择合适的Linux发行版" class="headerlink" title="8.1 选择合适的Linux发行版"></a>8.1 选择合适的Linux发行版</h3><p>Linux有许多发行版可供选择，对于初学者来说，选择一个适合自己的发行版非常重要。以下是一些适合初学者的Linux发行版：</p>
+<ul>
+<li><strong>Ubuntu</strong>：最受欢迎的Linux发行版之一，易于安装和使用，有庞大的社区支持，适合初学者。</li>
+<li><strong>Linux Mint</strong>：基于Ubuntu，界面友好，对新手非常友好。</li>
+<li><strong>Fedora</strong>：由Red Hat赞助的社区发行版，更新快，包含最新的软件和技术。</li>
+<li><strong>CentOS</strong>：基于Red Hat Enterprise Linux（RHEL），稳定可靠，适合服务器环境。</li>
+</ul>
+<p>对于初学者来说，我推荐选择Ubuntu，因为它易于安装和使用，文档完善，社区活跃，遇到问题时容易找到解决方案。</p>
+<h3 id="8-2-多动手实践"><a href="#8-2-多动手实践" class="headerlink" title="8.2 多动手实践"></a>8.2 多动手实践</h3><p>学习Linux不能只停留在理论层面，还需要多动手实践。只有通过实际操作，才能真正理解Linux的工作原理和使用方法。</p>
+<p><strong>建议的实践方式</strong>：</p>
+<ul>
+<li>在虚拟机上安装Linux，进行各种操作和实验。</li>
+<li>尝试使用命令行完成各种任务，如文件操作、软件安装、系统配置等。</li>
+<li>编写简单的shell脚本，实现自动化任务。</li>
+<li>搭建简单的服务器，如Web服务器、文件服务器、数据库服务器等。</li>
+</ul>
+<h3 id="8-3-学习命令行"><a href="#8-3-学习命令行" class="headerlink" title="8.3 学习命令行"></a>8.3 学习命令行</h3><p>Linux的命令行是其最强大的功能之一，也是学习Linux的重点。掌握常用的Linux命令，可以帮助你更高效地使用Linux。</p>
+<p><strong>学习命令行的方法</strong>：</p>
+<ul>
+<li>从基本命令开始学习，如文件和目录操作命令、系统信息命令等。</li>
+<li>了解命令的选项和参数，掌握命令的各种用法。</li>
+<li>学习使用管道（|）和重定向（&gt;、&gt;&gt;、&lt;），组合使用多个命令。</li>
+<li>学习使用命令的帮助文档（如<code>man 命令名</code>、<code>命令名 --help</code>）。</li>
+<li>练习在命令行中完成日常任务，逐渐减少对图形界面的依赖。</li>
+</ul>
+<h3 id="8-4-阅读文档和书籍"><a href="#8-4-阅读文档和书籍" class="headerlink" title="8.4 阅读文档和书籍"></a>8.4 阅读文档和书籍</h3><p>Linux有丰富的文档和书籍资源，阅读这些资源可以帮助你更系统地学习Linux。</p>
+<p><strong>推荐的文档和书籍</strong>：</p>
+<ul>
+<li><strong>Linux官方文档</strong>：各个Linux发行版的官方文档，如Ubuntu文档（<a target="_blank" rel="noopener" href="https://help.ubuntu.com/%EF%BC%89%E3%80%81Fedora%E6%96%87%E6%A1%A3%EF%BC%88https://docs.fedoraproject.org/%EF%BC%89%E7%AD%89%E3%80%82">https://help.ubuntu.com/）、Fedora文档（https://docs.fedoraproject.org/）等。</a></li>
+<li><strong>Linux命令行大全</strong>：William E. Shotts Jr. 著，一本全面介绍Linux命令行的书籍。</li>
+<li><strong>鸟哥的Linux私房菜</strong>：鸟哥著，一本非常适合初学者的Linux入门书籍。</li>
+<li><strong>Linux系统管理实战</strong>：Christopher Negus 著，一本介绍Linux系统管理的书籍。</li>
+<li><strong>深入理解Linux内核</strong>：Robert Love 著，一本深入介绍Linux内核原理的书籍，适合有一定基础的读者。</li>
+</ul>
+<h3 id="8-5-参与社区和论坛"><a href="#8-5-参与社区和论坛" class="headerlink" title="8.5 参与社区和论坛"></a>8.5 参与社区和论坛</h3><p>Linux有庞大的社区和论坛，参与这些社区和论坛可以帮助你解决问题，交流经验，提高技能。</p>
+<p><strong>推荐的社区和论坛</strong>：</p>
+<ul>
+<li><strong>Stack Overflow</strong>（<a target="_blank" rel="noopener" href="https://stackoverflow.com/%EF%BC%89%EF%BC%9A%E4%B8%80%E4%B8%AA%E6%B5%81%E8%A1%8C%E7%9A%84%E7%BC%96%E7%A8%8B%E9%97%AE%E7%AD%94%E7%BD%91%E7%AB%99%EF%BC%8C%E6%9C%89%E5%BE%88%E5%A4%9A%E5%85%B3%E4%BA%8ELinux%E7%9A%84%E9%97%AE%E9%A2%98%E5%92%8C%E7%AD%94%E6%A1%88%E3%80%82">https://stackoverflow.com/）：一个流行的编程问答网站，有很多关于Linux的问题和答案。</a></li>
+<li><strong>LinuxQuestions.org</strong>（<a target="_blank" rel="noopener" href="https://www.linuxquestions.org/%EF%BC%89%EF%BC%9A%E4%B8%80%E4%B8%AA%E4%B8%93%E9%97%A8%E7%9A%84Linux%E9%97%AE%E7%AD%94%E7%BD%91%E7%AB%99%E3%80%82">https://www.linuxquestions.org/）：一个专门的Linux问答网站。</a></li>
+<li><strong>Reddit的Linux板块</strong>（<a target="_blank" rel="noopener" href="https://www.reddit.com/r/linux/%EF%BC%89%EF%BC%9A%E4%B8%80%E4%B8%AA%E6%B4%BB%E8%B7%83%E7%9A%84Linux%E7%A4%BE%E5%8C%BA%E3%80%82">https://www.reddit.com/r/linux/）：一个活跃的Linux社区。</a></li>
+<li><strong>各个Linux发行版的官方论坛</strong>：如Ubuntu论坛（<a target="_blank" rel="noopener" href="https://ubuntuforums.org/%EF%BC%89%E3%80%81Fedora%E8%AE%BA%E5%9D%9B%EF%BC%88https://forums.fedoraproject.org/%EF%BC%89%E7%AD%89%E3%80%82">https://ubuntuforums.org/）、Fedora论坛（https://forums.fedoraproject.org/）等。</a></li>
+<li><strong>GitHub</strong>（<a target="_blank" rel="noopener" href="https://github.com/%EF%BC%89%EF%BC%9A%E4%B8%80%E4%B8%AA%E4%BB%A3%E7%A0%81%E6%89%98%E7%AE%A1%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%89%BE%E5%88%B0%E5%BE%88%E5%A4%9ALinux%E7%9B%B8%E5%85%B3%E7%9A%84%E9%A1%B9%E7%9B%AE%E5%92%8C%E5%B7%A5%E5%85%B7%E3%80%82">https://github.com/）：一个代码托管平台，可以找到很多Linux相关的项目和工具。</a></li>
+</ul>
+<h3 id="8-6-解决实际问题"><a href="#8-6-解决实际问题" class="headerlink" title="8.6 解决实际问题"></a>8.6 解决实际问题</h3><p>学习Linux的最终目的是为了解决实际问题。通过解决实际问题，可以巩固所学的知识，提高解决问题的能力。</p>
+<p><strong>解决实际问题的方法</strong>：</p>
+<ul>
+<li><strong>从小问题开始</strong>：不要一开始就尝试解决复杂的问题，而是从简单的、小的问题开始，逐渐积累经验。</li>
+<li><strong>分解问题</strong>：将复杂的问题分解成多个简单的子问题，逐一解决。</li>
+<li><strong>查阅资料</strong>：遇到问题时，查阅相关的文档、书籍或网络资源，寻找解决方案。</li>
+<li><strong>实验和测试</strong>：尝试不同的解决方案，通过实验和测试验证哪种方法有效。</li>
+<li><strong>记录和总结</strong>：记录解决问题的过程和方法，总结经验教训，以便将来参考。</li>
+</ul>
+<h2 id="9-总结与思考"><a href="#9-总结与思考" class="headerlink" title="9. 总结与思考"></a>9. 总结与思考</h2><p>通过这篇文章的学习，我们了解了Linux操作系统的基本概念、安装方法、基本命令、shell脚本编程、网络配置和系统管理等知识。这些知识是学习Linux的基础，掌握它们可以帮助你更好地使用和管理Linux系统。</p>
+<h3 id="9-1-学习Linux的收获"><a href="#9-1-学习Linux的收获" class="headerlink" title="9.1 学习Linux的收获"></a>9.1 学习Linux的收获</h3><p>学习Linux可以带来很多收获：</p>
+<ul>
+<li><strong>掌握一项重要的技能</strong>：Linux是服务器领域最流行的操作系统，掌握Linux可以提高你的就业竞争力。</li>
+<li><strong>深入理解计算机系统</strong>：学习Linux可以帮助你深入理解计算机系统的工作原理，如文件系统、进程管理、内存管理等。</li>
+<li><strong>提高问题解决能力</strong>：Linux的命令行和各种工具提供了强大的功能，通过使用这些功能，可以提高你的问题解决能力。</li>
+<li><strong>培养开源精神</strong>：Linux是开源软件的代表，学习Linux可以帮助你了解和参与开源项目，培养开源精神。</li>
+<li><strong>拓展技术视野</strong>：Linux在各个领域都有广泛的应用，学习Linux可以拓展你的技术视野，了解更多的技术领域。</li>
+</ul>
+<h3 id="9-2-后续学习建议"><a href="#9-2-后续学习建议" class="headerlink" title="9.2 后续学习建议"></a>9.2 后续学习建议</h3><p>学习Linux是一个持续的过程，以下是一些后续学习的建议：</p>
+<ul>
+<li><strong>深入学习命令行</strong>：命令行是Linux的核心，深入学习命令行的各种技巧和用法，可以提高你的工作效率。</li>
+<li><strong>学习shell脚本编程</strong>：shell脚本编程是自动化任务的重要工具，学习shell脚本编程可以帮助你实现各种自动化任务。</li>
+<li><strong>学习Linux系统管理</strong>：系统管理是Linux的重要组成部分，学习系统管理可以帮助你更好地维护和管理Linux系统。</li>
+<li><strong>学习网络服务配置</strong>：Linux广泛应用于服务器领域，学习网络服务配置（如Web服务器、数据库服务器、邮件服务器等）可以帮助你搭建各种网络服务。</li>
+<li><strong>学习Linux内核</strong>：如果你对Linux的底层原理感兴趣，可以学习Linux内核的相关知识，深入理解Linux的工作原理。</li>
+<li><strong>参与开源项目</strong>：参与开源项目是学习Linux的好方法，可以在实践中提高你的技能，同时为开源社区做出贡献。</li>
+</ul>
+<h3 id="9-3-最后的思考"><a href="#9-3-最后的思考" class="headerlink" title="9.3 最后的思考"></a>9.3 最后的思考</h3><p>Linux是一个强大而灵活的操作系统，它的开源特性、稳定性、安全性和广泛的应用场景使其成为服务器领域和开发者社区的首选。学习Linux不仅可以帮助你掌握一项重要的技能，还可以深入理解计算机系统的工作原理，提高你的技术水平和解决问题的能力。</p>
+<p>学习Linux需要耐心和实践，不要害怕犯错误，因为犯错误是学习的一部分。通过不断地实践和探索，你会逐渐掌握Linux的各种技能，成为一名Linux高手。</p>
+<p>最后，希望这篇文章能够帮助你入门Linux，开启你的Linux学习之旅！祝你学习愉快，收获满满！</p>
+<h2 id="附录：Linux常用命令速查表"><a href="#附录：Linux常用命令速查表" class="headerlink" title="附录：Linux常用命令速查表"></a>附录：Linux常用命令速查表</h2><p>为了方便你学习和使用Linux，我整理了一份Linux常用命令的速查表，包含了文件和目录操作、系统信息、用户和权限管理、网络配置等方面的常用命令。</p>
+<h3 id="文件和目录操作"><a href="#文件和目录操作" class="headerlink" title="文件和目录操作"></a>文件和目录操作</h3><ul>
+<li><code>ls</code>：列出目录内容</li>
+<li><code>cd</code>：切换目录</li>
+<li><code>pwd</code>：显示当前工作目录</li>
+<li><code>mkdir</code>：创建目录</li>
+<li><code>rm</code>：删除文件或目录</li>
+<li><code>cp</code>：复制文件或目录</li>
+<li><code>mv</code>：移动或重命名文件或目录</li>
+<li><code>touch</code>：创建空文件或更新文件时间戳</li>
+<li><code>cat</code>：查看文件内容</li>
+<li><code>less</code>：分页查看文件内容</li>
+<li><code>head</code>：查看文件的前几行</li>
+<li><code>tail</code>：查看文件的后几行</li>
+<li><code>find</code>：按条件查找文件和目录</li>
+<li><code>grep</code>：在文件中搜索指定的字符串</li>
+<li><code>file</code>：查看文件的类型</li>
+<li><code>ln</code>：创建链接文件</li>
+</ul>
+<h3 id="系统信息和管理"><a href="#系统信息和管理" class="headerlink" title="系统信息和管理"></a>系统信息和管理</h3><ul>
+<li><code>uname</code>：显示系统信息</li>
+<li><code>top</code>：显示进程信息</li>
+<li><code>ps</code>：显示当前进程状态</li>
+<li><code>df</code>：显示磁盘使用情况</li>
+<li><code>free</code>：显示内存使用情况</li>
+<li><code>ifconfig/ip</code>：显示或配置网络接口</li>
+<li><code>ping</code>：测试网络连接</li>
+<li><code>netstat</code>：显示网络状态</li>
+<li><code>shutdown</code>：shutdown或重启系统</li>
+<li><code>reboot</code>：重启系统</li>
+<li><code>poweroff</code>：shutdown系统</li>
+</ul>
+<h3 id="用户和权限管理"><a href="#用户和权限管理" class="headerlink" title="用户和权限管理"></a>用户和权限管理</h3><ul>
+<li><code>useradd</code>：添加用户</li>
+<li><code>passwd</code>：设置或修改用户密码</li>
+<li><code>userdel</code>：删除用户</li>
+<li><code>groupadd</code>：添加组</li>
+<li><code>groupdel</code>：删除组</li>
+<li><code>chown</code>：修改文件或目录的所有者</li>
+<li><code>chmod</code>：修改文件或目录的权限</li>
+<li><code>chgrp</code>：修改文件或目录的所属组</li>
+<li><code>su</code>：切换用户</li>
+<li><code>sudo</code>：以其他用户身份执行命令</li>
+</ul>
+<h3 id="软件包管理"><a href="#软件包管理" class="headerlink" title="软件包管理"></a>软件包管理</h3><p><strong>Ubuntu&#x2F;Debian</strong>：</p>
+<ul>
+<li><code>apt update</code>：更新软件包列表</li>
+<li><code>apt upgrade</code>：升级已安装的软件包</li>
+<li><code>apt install</code>：安装软件包</li>
+<li><code>apt remove</code>：卸载软件包</li>
+<li><code>apt search</code>：搜索软件包</li>
+</ul>
+<p><strong>CentOS&#x2F;RHEL</strong>：</p>
+<ul>
+<li><code>yum check-update</code>：更新软件包列表</li>
+<li><code>yum update</code>：升级已安装的软件包</li>
+<li><code>yum install</code>：安装软件包</li>
+<li><code>yum remove</code>：卸载软件包</li>
+<li><code>yum search</code>：搜索软件包</li>
+</ul>
+<p><strong>Arch Linux</strong>：</p>
+<ul>
+<li><code>pacman -Syu</code>：更新软件包列表并升级已安装的软件包</li>
+<li><code>pacman -S</code>：安装软件包</li>
+<li><code>pacman -R</code>：卸载软件包</li>
+<li><code>pacman -Ss</code>：搜索软件包</li>
+</ul>
+<h3 id="服务管理"><a href="#服务管理" class="headerlink" title="服务管理"></a>服务管理</h3><ul>
+<li><code>systemctl start</code>：启动服务</li>
+<li><code>systemctl stop</code>：停止服务</li>
+<li><code>systemctl restart</code>：重启服务</li>
+<li><code>systemctl status</code>：查看服务状态</li>
+<li><code>systemctl enable</code>：设置服务开机自启</li>
+<li><code>systemctl disable</code>：禁止服务开机自启</li>
+</ul>
+<h3 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h3><ul>
+<li><code>ip addr</code>：显示或配置网络接口的IP地址</li>
+<li><code>ip route</code>：显示或配置路由表</li>
+<li><code>hostname</code>：显示或设置主机名</li>
+<li><code>nslookup</code>：查询DNS记录</li>
+<li><code>dig</code>：查询DNS记录</li>
+<li><code>ssh</code>：安全远程登录</li>
+<li><code>scp</code>：安全复制</li>
+<li><code>wget</code>：下载文件</li>
+<li><code>curl</code>：传输数据</li>
+</ul>
+<h3 id="压缩和解压缩"><a href="#压缩和解压缩" class="headerlink" title="压缩和解压缩"></a>压缩和解压缩</h3><ul>
+<li><code>tar</code>：打包和解包文件</li>
+<li><code>gzip</code>：压缩或解压缩文件</li>
+<li><code>bzip2</code>：压缩或解压缩文件</li>
+<li><code>zip</code>：压缩文件</li>
+<li><code>unzip</code>：解压缩文件</li>
+</ul>
+<h3 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h3><ul>
+<li><code>fdisk</code>：分区工具</li>
+<li><code>mkfs</code>：创建文件系统</li>
+<li><code>mount</code>：挂载文件系统</li>
+<li><code>umount</code>：卸载文件系统</li>
+<li><code>fsck</code>：检查和修复文件系统</li>
+</ul>
+<p>这个速查表包含了Linux中最常用的命令，你可以将它保存下来，作为学习和使用Linux的参考。当然，Linux的命令还有很多，如果你想了解更多的命令，可以使用<code>man 命令名</code>或<code>命令名 --help</code>来查看命令的帮助文档。</p>
+<hr>
+<p>希望这篇《Linux操作系统入门：从零开始学习系统管理》文章能够帮助你顺利入门Linux操作系统。学习Linux需要时间和实践，只要你保持热情，不断探索，相信你一定能够掌握Linux的各种技能，成为一名Linux高手！</p>
+<p>如果你在学习过程中遇到问题，可以查阅相关的文档和书籍，或者在Linux社区和论坛中寻求帮助。祝你学习愉快，收获满满！</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">观棋</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2024/12/07/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">http://example.com/2024/12/07/Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="http://example.com" target="_blank">观棋的个人博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/">入门教程</a><a class="post-meta__tags" href="/tags/%E9%9B%B6%E5%9F%BA%E7%A1%80/">零基础</a><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86/">系统管理</a><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div class="post-share"><div class="social-share" data-image="/img/linux.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button"><i class="fas fa-qrcode"></i>如果你觉得这篇文章对你有帮助，可以请我喝杯咖啡</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="/img/wechat.jpg" target="_blank"><img class="post-qr-code-img" src="/img/wechat.jpg" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/img/alipay.jpg" target="_blank"><img class="post-qr-code-img" src="/img/alipay.jpg" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/2025/08/23/JavaScript%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B%E8%AF%A6%E8%A7%A3%EF%BC%9A%E4%BB%8E%E5%9B%9E%E8%B0%83%E5%88%B0Async-Await/" title="JavaScript异步编程详解：从回调到Async/Await"><img class="cover" src="/img/2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">JavaScript异步编程详解：从回调到Async/Await</div></div></div></a><a class="pagination-related  no-desc" href="/2024/12/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" title="数据结构与算法入门：从零开始学习编程基础"><img class="cover" src="/img/algorithm.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">数据结构与算法入门：从零开始学习编程基础</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related no-desc" href="/2024/12/05/Docker%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E5%AE%B9%E5%99%A8%E5%8C%96/" title="Docker容器技术入门：从零开始学习容器化"><img class="cover" src="/img/docker.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-05</div><div class="info-item-2">Docker容器技术入门：从零开始学习容器化</div></div></div></a><a class="pagination-related no-desc" href="/2024/12/06/Git%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E4%BB%A3%E7%A0%81%E7%AE%A1%E7%90%86/" title="Git版本控制入门：从零开始学习代码管理"><img class="cover" src="/img/git.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-06</div><div class="info-item-2">Git版本控制入门：从零开始学习代码管理</div></div></div></a><a class="pagination-related no-desc" href="/2024/12/07/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/" title="数据结构与算法入门：从零开始学习编程基础"><img class="cover" src="/img/algorithm.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-07</div><div class="info-item-2">数据结构与算法入门：从零开始学习编程基础</div></div></div></a><a class="pagination-related no-desc" href="/2025/08/23/Linux%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%AE%9E%E6%88%98%E6%8C%87%E5%8D%97%EF%BC%9A%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/" title="Linux命令行实战指南：从入门到精通"><img class="cover" src="/img/linux.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-23</div><div class="info-item-2">Linux命令行实战指南：从入门到精通</div></div></div></a><a class="pagination-related no-desc" href="/2025/08/23/Python%E7%BC%96%E7%A8%8B%E4%B9%8B%E6%97%85%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%9F%BA%E7%A1%80%E5%88%B0%E5%AE%9E%E6%88%98%E5%BA%94%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" title="Python编程之旅：从零基础到实战应用（一）——环境搭建与基础语法"><img class="cover" src="/img/python.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-08-23</div><div class="info-item-2">Python编程之旅：从零基础到实战应用（一）——环境搭建与基础语法</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">观棋</div><div class="author-info-description">须知少时凌云志，曾许人间第一流</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">28</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">78</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">26</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/guanqi9527"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/" target="_blank" title="Github"><i class="github" style="color: #181717;"></i></a><a class="social-icon" href="mailto:example@example.com" target="_blank" title="Email"><i class="email" style="color: #ea4335;"></i></a><a class="social-icon" href="https://weibo.com/" target="_blank" title="Weibo"><i class="weibo" style="color: #e6162d;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎大家来到观棋的Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%85%A5%E9%97%A8%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">Linux操作系统入门：从零开始学习系统管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AFLinux%EF%BC%9F"><span class="toc-number">1.2.</span> <span class="toc-text">1. 什么是Linux？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.1.</span> <span class="toc-text">思考问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-Linux%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.1 Linux的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Linux%E7%9A%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2 Linux的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-Linux%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.2.4.</span> <span class="toc-text">1.3 Linux的应用场景</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Linux%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.</span> <span class="toc-text">2. Linux的安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E9%80%89%E6%8B%A9%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F"><span class="toc-number">1.3.1.</span> <span class="toc-text">2.1 选择安装方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%9C%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%B8%8A%E5%AE%89%E8%A3%85Ubuntu"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.2 在虚拟机上安装Ubuntu</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A41%EF%BC%9A%E4%B8%8B%E8%BD%BD%E5%B9%B6%E5%AE%89%E8%A3%85VirtualBox"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">步骤1：下载并安装VirtualBox</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A42%EF%BC%9A%E4%B8%8B%E8%BD%BDUbuntu%E9%95%9C%E5%83%8F%E6%96%87%E4%BB%B6"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">步骤2：下载Ubuntu镜像文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A43%EF%BC%9A%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">步骤3：创建虚拟机</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AD%A5%E9%AA%A44%EF%BC%9A%E5%AE%89%E8%A3%85Ubuntu"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">步骤4：安装Ubuntu</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%97%AE%E9%A2%98-1"><span class="toc-number">1.3.3.</span> <span class="toc-text">思考问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Linux%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.4.</span> <span class="toc-text">3. Linux的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.1 文件系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.2 用户和组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-number">1.4.3.</span> <span class="toc-text">3.3 权限管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%95%8C%E9%9D%A2"><span class="toc-number">1.4.4.</span> <span class="toc-text">3.4 命令行界面</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Linux%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.</span> <span class="toc-text">4. Linux的基本命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.1.</span> <span class="toc-text">4.1 文件和目录操作命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ls%EF%BC%9A%E5%88%97%E5%87%BA%E7%9B%AE%E5%BD%95%E5%86%85%E5%AE%B9"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">ls：列出目录内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cd%EF%BC%9A%E5%88%87%E6%8D%A2%E7%9B%AE%E5%BD%95"><span class="toc-number">1.5.1.2.</span> <span class="toc-text">cd：切换目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#pwd%EF%BC%9A%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95"><span class="toc-number">1.5.1.3.</span> <span class="toc-text">pwd：显示当前工作目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mkdir%EF%BC%9A%E5%88%9B%E5%BB%BA%E7%9B%AE%E5%BD%95"><span class="toc-number">1.5.1.4.</span> <span class="toc-text">mkdir：创建目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rm%EF%BC%9A%E5%88%A0%E9%99%A4%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="toc-number">1.5.1.5.</span> <span class="toc-text">rm：删除文件或目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cp%EF%BC%9A%E5%A4%8D%E5%88%B6%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="toc-number">1.5.1.6.</span> <span class="toc-text">cp：复制文件或目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mv%EF%BC%9A%E7%A7%BB%E5%8A%A8%E6%88%96%E9%87%8D%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95"><span class="toc-number">1.5.1.7.</span> <span class="toc-text">mv：移动或重命名文件或目录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#touch%EF%BC%9A%E5%88%9B%E5%BB%BA%E7%A9%BA%E6%96%87%E4%BB%B6%E6%88%96%E6%9B%B4%E6%96%B0%E6%96%87%E4%BB%B6%E6%97%B6%E9%97%B4%E6%88%B3"><span class="toc-number">1.5.1.8.</span> <span class="toc-text">touch：创建空文件或更新文件时间戳</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cat%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">1.5.1.9.</span> <span class="toc-text">cat：查看文件内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#less%EF%BC%9A%E5%88%86%E9%A1%B5%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9"><span class="toc-number">1.5.1.10.</span> <span class="toc-text">less：分页查看文件内容</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#head%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%89%8D%E5%87%A0%E8%A1%8C"><span class="toc-number">1.5.1.11.</span> <span class="toc-text">head：查看文件的前几行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tail%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%9A%84%E5%90%8E%E5%87%A0%E8%A1%8C"><span class="toc-number">1.5.1.12.</span> <span class="toc-text">tail：查看文件的后几行</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%97%AE%E9%A2%98-2"><span class="toc-number">1.5.2.</span> <span class="toc-text">思考问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E5%92%8C%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.3.</span> <span class="toc-text">4.2 系统信息和管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#uname%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">uname：显示系统信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#top%EF%BC%9A%E6%98%BE%E7%A4%BA%E8%BF%9B%E7%A8%8B%E4%BF%A1%E6%81%AF"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">top：显示进程信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ps%EF%BC%9A%E6%98%BE%E7%A4%BA%E5%BD%93%E5%89%8D%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81"><span class="toc-number">1.5.3.3.</span> <span class="toc-text">ps：显示当前进程状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#df%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">1.5.3.4.</span> <span class="toc-text">df：显示磁盘使用情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#free%EF%BC%9A%E6%98%BE%E7%A4%BA%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5"><span class="toc-number">1.5.3.5.</span> <span class="toc-text">free：显示内存使用情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ifconfig-ip%EF%BC%9A%E6%98%BE%E7%A4%BA%E6%88%96%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.5.3.6.</span> <span class="toc-text">ifconfig&#x2F;ip：显示或配置网络接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ping%EF%BC%9A%E6%B5%8B%E8%AF%95%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5"><span class="toc-number">1.5.3.7.</span> <span class="toc-text">ping：测试网络连接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#netstat%EF%BC%9A%E6%98%BE%E7%A4%BA%E7%BD%91%E7%BB%9C%E7%8A%B6%E6%80%81"><span class="toc-number">1.5.3.8.</span> <span class="toc-text">netstat：显示网络状态</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.4.</span> <span class="toc-text">4.3 用户和权限管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#useradd%EF%BC%9A%E6%B7%BB%E5%8A%A0%E7%94%A8%E6%88%B7"><span class="toc-number">1.5.4.1.</span> <span class="toc-text">useradd：添加用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#passwd%EF%BC%9A%E8%AE%BE%E7%BD%AE%E6%88%96%E4%BF%AE%E6%94%B9%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81"><span class="toc-number">1.5.4.2.</span> <span class="toc-text">passwd：设置或修改用户密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#userdel%EF%BC%9A%E5%88%A0%E9%99%A4%E7%94%A8%E6%88%B7"><span class="toc-number">1.5.4.3.</span> <span class="toc-text">userdel：删除用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#groupadd%EF%BC%9A%E6%B7%BB%E5%8A%A0%E7%BB%84"><span class="toc-number">1.5.4.4.</span> <span class="toc-text">groupadd：添加组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#groupdel%EF%BC%9A%E5%88%A0%E9%99%A4%E7%BB%84"><span class="toc-number">1.5.4.5.</span> <span class="toc-text">groupdel：删除组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chown%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%89%80%E6%9C%89%E8%80%85"><span class="toc-number">1.5.4.6.</span> <span class="toc-text">chown：修改文件或目录的所有者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#chmod%EF%BC%9A%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6%E6%88%96%E7%9B%AE%E5%BD%95%E7%9A%84%E6%9D%83%E9%99%90"><span class="toc-number">1.5.4.7.</span> <span class="toc-text">chmod：修改文件或目录的权限</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%97%AE%E9%A2%98-3"><span class="toc-number">1.5.5.</span> <span class="toc-text">思考问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-number">1.5.6.</span> <span class="toc-text">4.4 软件包管理命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ubuntu-Debian%EF%BC%88apt%EF%BC%89"><span class="toc-number">1.5.6.1.</span> <span class="toc-text">Ubuntu&#x2F;Debian（apt）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CentOS-RHEL%EF%BC%88yum-dnf%EF%BC%89"><span class="toc-number">1.5.6.2.</span> <span class="toc-text">CentOS&#x2F;RHEL（yum&#x2F;dnf）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Arch-Linux%EF%BC%88pacman%EF%BC%89"><span class="toc-number">1.5.6.3.</span> <span class="toc-text">Arch Linux（pacman）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Linux%E7%9A%84shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B"><span class="toc-number">1.6.</span> <span class="toc-text">5. Linux的shell脚本编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-shell%E8%84%9A%E6%9C%AC%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.1.</span> <span class="toc-text">5.1 shell脚本的基本结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AAshell%E8%84%9A%E6%9C%AC"><span class="toc-number">1.6.2.</span> <span class="toc-text">5.2 编写第一个shell脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-shell%E8%84%9A%E6%9C%AC%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-number">1.6.3.</span> <span class="toc-text">5.3 shell脚本的变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-shell%E8%84%9A%E6%9C%AC%E7%9A%84%E6%8E%A7%E5%88%B6%E7%BB%93%E6%9E%84"><span class="toc-number">1.6.4.</span> <span class="toc-text">5.4 shell脚本的控制结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5%EF%BC%88if-else%EF%BC%89"><span class="toc-number">1.6.4.1.</span> <span class="toc-text">条件语句（if-else）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5%EF%BC%88for%E3%80%81while%EF%BC%89"><span class="toc-number">1.6.4.2.</span> <span class="toc-text">循环语句（for、while）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%97%AE%E9%A2%98-4"><span class="toc-number">1.6.5.</span> <span class="toc-text">思考问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Linux%E7%9A%84%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.</span> <span class="toc-text">6. Linux的网络配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.1.</span> <span class="toc-text">6.1 网络接口配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ip%E5%91%BD%E4%BB%A4%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.7.1.1.</span> <span class="toc-text">使用ip命令配置网络接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E9%85%8D%E7%BD%AE%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.7.1.2.</span> <span class="toc-text">通过配置文件配置网络接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-DNS%E9%85%8D%E7%BD%AE"><span class="toc-number">1.7.2.</span> <span class="toc-text">6.2 DNS配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">1.7.3.</span> <span class="toc-text">6.3 网络服务管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Linux%E7%9A%84%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86"><span class="toc-number">1.8.</span> <span class="toc-text">7. Linux的系统管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%92%8Cshutdown"><span class="toc-number">1.8.1.</span> <span class="toc-text">7.1 系统启动和shutdown</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E8%BF%87%E7%A8%8B"><span class="toc-number">1.8.1.1.</span> <span class="toc-text">系统启动过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9Fshutdown%E5%91%BD%E4%BB%A4"><span class="toc-number">1.8.1.2.</span> <span class="toc-text">系统shutdown命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="toc-number">1.8.2.</span> <span class="toc-text">7.2 进程管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.8.2.1.</span> <span class="toc-text">查看进程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%88%E6%AD%A2%E8%BF%9B%E7%A8%8B"><span class="toc-number">1.8.2.2.</span> <span class="toc-text">终止进程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">1.8.3.</span> <span class="toc-text">7.3 服务管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E6%97%A5%E5%BF%97%E7%AE%A1%E7%90%86"><span class="toc-number">1.8.4.</span> <span class="toc-text">7.4 日志管理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.8.4.1.</span> <span class="toc-text">日志文件的位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="toc-number">1.8.4.2.</span> <span class="toc-text">查看日志文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#journalctl%E5%91%BD%E4%BB%A4"><span class="toc-number">1.8.4.3.</span> <span class="toc-text">journalctl命令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%80%83%E9%97%AE%E9%A2%98-5"><span class="toc-number">1.8.5.</span> <span class="toc-text">思考问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%A6%82%E4%BD%95%E5%AD%A6%E4%B9%A0Linux"><span class="toc-number">1.9.</span> <span class="toc-text">8. 如何学习Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84Linux%E5%8F%91%E8%A1%8C%E7%89%88"><span class="toc-number">1.9.1.</span> <span class="toc-text">8.1 选择合适的Linux发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E5%A4%9A%E5%8A%A8%E6%89%8B%E5%AE%9E%E8%B7%B5"><span class="toc-number">1.9.2.</span> <span class="toc-text">8.2 多动手实践</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%AD%A6%E4%B9%A0%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="toc-number">1.9.3.</span> <span class="toc-text">8.3 学习命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E9%98%85%E8%AF%BB%E6%96%87%E6%A1%A3%E5%92%8C%E4%B9%A6%E7%B1%8D"><span class="toc-number">1.9.4.</span> <span class="toc-text">8.4 阅读文档和书籍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-%E5%8F%82%E4%B8%8E%E7%A4%BE%E5%8C%BA%E5%92%8C%E8%AE%BA%E5%9D%9B"><span class="toc-number">1.9.5.</span> <span class="toc-text">8.5 参与社区和论坛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-%E8%A7%A3%E5%86%B3%E5%AE%9E%E9%99%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.9.6.</span> <span class="toc-text">8.6 解决实际问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%80%BB%E7%BB%93%E4%B8%8E%E6%80%9D%E8%80%83"><span class="toc-number">1.10.</span> <span class="toc-text">9. 总结与思考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-%E5%AD%A6%E4%B9%A0Linux%E7%9A%84%E6%94%B6%E8%8E%B7"><span class="toc-number">1.10.1.</span> <span class="toc-text">9.1 学习Linux的收获</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-%E5%90%8E%E7%BB%AD%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE"><span class="toc-number">1.10.2.</span> <span class="toc-text">9.2 后续学习建议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-%E6%9C%80%E5%90%8E%E7%9A%84%E6%80%9D%E8%80%83"><span class="toc-number">1.10.3.</span> <span class="toc-text">9.3 最后的思考</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%9ALinux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%80%9F%E6%9F%A5%E8%A1%A8"><span class="toc-number">1.11.</span> <span class="toc-text">附录：Linux常用命令速查表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C"><span class="toc-number">1.11.1.</span> <span class="toc-text">文件和目录操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF%E5%92%8C%E7%AE%A1%E7%90%86"><span class="toc-number">1.11.2.</span> <span class="toc-text">系统信息和管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="toc-number">1.11.3.</span> <span class="toc-text">用户和权限管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-number">1.11.4.</span> <span class="toc-text">软件包管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">1.11.5.</span> <span class="toc-text">服务管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E9%85%8D%E7%BD%AE"><span class="toc-number">1.11.6.</span> <span class="toc-text">网络配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="toc-number">1.11.7.</span> <span class="toc-text">压缩和解压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.11.8.</span> <span class="toc-text">磁盘管理</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/09/05/%E4%BC%A0%E8%BE%93%E5%B1%82%E8%AF%A6%E8%A7%A3%EF%BC%9ATCP%E4%B8%8EUDP%E5%8D%8F%E8%AE%AE/" title="传输层详解：TCP与UDP协议"><img src="/img/transport.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="传输层详解：TCP与UDP协议"/></a><div class="content"><a class="title" href="/2025/09/05/%E4%BC%A0%E8%BE%93%E5%B1%82%E8%AF%A6%E8%A7%A3%EF%BC%9ATCP%E4%B8%8EUDP%E5%8D%8F%E8%AE%AE/" title="传输层详解：TCP与UDP协议">传输层详解：TCP与UDP协议</a><time datetime="2025-09-05T02:00:00.000Z" title="发表于 2025-09-05 10:00:00">2025-09-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/04/%E7%BD%91%E7%BB%9C%E5%B1%82%E8%AF%A6%E8%A7%A3%EF%BC%9AIP%E5%9C%B0%E5%9D%80%E4%B8%8E%E8%B7%AF%E7%94%B1%E6%9C%BA%E5%88%B6/" title="网络层详解：IP地址与路由机制"><img src="/img/networklayer.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络层详解：IP地址与路由机制"/></a><div class="content"><a class="title" href="/2025/09/04/%E7%BD%91%E7%BB%9C%E5%B1%82%E8%AF%A6%E8%A7%A3%EF%BC%9AIP%E5%9C%B0%E5%9D%80%E4%B8%8E%E8%B7%AF%E7%94%B1%E6%9C%BA%E5%88%B6/" title="网络层详解：IP地址与路由机制">网络层详解：IP地址与路由机制</a><time datetime="2025-09-04T02:00:00.000Z" title="发表于 2025-09-04 10:00:00">2025-09-04</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/03/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AF%A6%E8%A7%A3%EF%BC%9A%E4%BB%8E%E5%B8%A7%E5%88%B0MAC%E5%9C%B0%E5%9D%80/" title="数据链路层详解：从帧到MAC地址"><img src="/img/datalink.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据链路层详解：从帧到MAC地址"/></a><div class="content"><a class="title" href="/2025/09/03/%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82%E8%AF%A6%E8%A7%A3%EF%BC%9A%E4%BB%8E%E5%B8%A7%E5%88%B0MAC%E5%9C%B0%E5%9D%80/" title="数据链路层详解：从帧到MAC地址">数据链路层详解：从帧到MAC地址</a><time datetime="2025-09-03T02:00:00.000Z" title="发表于 2025-09-03 10:00:00">2025-09-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/02/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3%EF%BC%9AOSI%E4%B8%8ETCPIP/" title="网络分层模型详解：OSI与TCP/IP"><img src="/img/layer.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="网络分层模型详解：OSI与TCP/IP"/></a><div class="content"><a class="title" href="/2025/09/02/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82%E6%A8%A1%E5%9E%8B%E8%AF%A6%E8%A7%A3%EF%BC%9AOSI%E4%B8%8ETCPIP/" title="网络分层模型详解：OSI与TCP/IP">网络分层模型详解：OSI与TCP/IP</a><time datetime="2025-09-02T02:00:00.000Z" title="发表于 2025-09-02 10:00:00">2025-09-02</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%EF%BC%9A%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/" title="计算机网络基础概念：从入门到精通"><img src="/img/network.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络基础概念：从入门到精通"/></a><div class="content"><a class="title" href="/2025/09/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%EF%BC%9A%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%B2%BE%E9%80%9A/" title="计算机网络基础概念：从入门到精通">计算机网络基础概念：从入门到精通</a><time datetime="2025-09-01T02:00:00.000Z" title="发表于 2025-09-01 10:00:00">2025-09-01</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2019 - 2025 By 观棋</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script src="/js/custom-contextmenu.js"></script><script src="/js/random-post.js" defer="defer"></script><script src="/js/custom-enhancements.js" defer="defer"></script><script src="/js/extra-enhancements.js" defer="defer"></script><div class="aplayer no-destroy" data-id="14187688075" data-server="netease" data-type="playlist" data-autoplay="false" data-fixed="true" data-lrcType="-1"> </div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="click-show-text" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-show-text.min.js" data-mobile="false" data-text="富强,民主,文明,和谐,自由,平等,公正,法制,爱国,敬业,诚信,友善" data-fontsize="15px" data-random="false" async="async"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      const usePjax = true
+      false
+        ? (usePjax ? pjax.loadUrl('/404.html') : window.location.href = '/404.html')
+        : window.location.href = e.request.responseURL
+    }
+  })
+})()</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="请输入搜索内容" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_categories_card_injector_config(){
+    // 检查容器是否存在
+    var parent_div_git = document.getElementById('recent-posts');
+    // 如果容器不存在，则动态创建
+    if (!parent_div_git) {
+      console.warn('butterfly_categories_card: 挂载容器不存在，正在动态创建...');
+      // 创建新容器（默认插入到页面主体顶部）
+      parent_div_git = document.createElement('div');
+      parent_div_git.id = 'recent-posts'; // 赋予配置的ID
+      document.querySelector('#page').prepend(parent_div_git); // 插入到 #content-inner 内
+    }
+    var item_html = '<style>li.categoryBar-list-item{width:32.3%;}.categoryBar-list{max-height: 950px;overflow:auto;}.categoryBar-list::-webkit-scrollbar{width:0!important}@media screen and (max-width: 650px){.categoryBar-list{max-height: 800px;}}</style><div class="recent-post-item" style="height:auto;width:100%;padding:0px;"><div id="categoryBar"><ul class="categoryBar-list"><li class="categoryBar-list-item" style="background:url(https://youke1.picui.cn/s1/2025/08/23/68a96aefa735b.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/编程语言/&quot;);" href="javascript:void(0);">编程语言</a><span class="categoryBar-list-count">6</span><span class="categoryBar-list-descr">1</span></li><li class="categoryBar-list-item" style="background:url(https://youke1.picui.cn/s1/2025/08/23/68a96b74e3bd9.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/容器技术/&quot;);" href="javascript:void(0);">容器技术</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">2</span></li><li class="categoryBar-list-item" style="background:url(https://img.cdn1.vip/i/68a96d65be80d_1755934053.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/技术工具/&quot;);" href="javascript:void(0);">技术工具</a><span class="categoryBar-list-count">2</span><span class="categoryBar-list-descr">3</span></li><li class="categoryBar-list-item" style="background:url(https://img.cdn1.vip/i/68a96d62d765a_1755934050.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/编程语言/CSS/&quot;);" href="javascript:void(0);">CSS</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">4</span></li><li class="categoryBar-list-item" style="background:url(https://img.cdn1.vip/i/68a96d753bf3d_1755934069.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/数据库/&quot;);" href="javascript:void(0);">数据库</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">5</span></li><li class="categoryBar-list-item" style="background:url(https://img.cdn1.vip/i/68a96d7a65755_1755934074.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/容器技术/DevOps/&quot;);" href="javascript:void(0);">DevOps</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">6</span></li><li class="categoryBar-list-item" style="background:url(https://img.cdn1.vip/i/68a96db868657_1755934136.webp);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/编程语言/Python/&quot;);" href="javascript:void(0);">Python</a><span class="categoryBar-list-count">3</span><span class="categoryBar-list-descr">7</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0715/084531icbMy.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/编程语言/JavaScript/&quot;);" href="javascript:void(0);">JavaScript</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">8</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0516/113821KBewM.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/编程语言/React/&quot;);" href="javascript:void(0);">React</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">9</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0507/163902lg21o.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/技术工具/数据库/&quot;);" href="javascript:void(0);">数据库</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">10</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0407/083211ufsXJ.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/前端开发/&quot;);" href="javascript:void(0);">前端开发</a><span class="categoryBar-list-count">4</span><span class="categoryBar-list-descr">11</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0326/085622WnntL.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/hexo/&quot;);" href="javascript:void(0);">hexo</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">12</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0316/233827qKq4a.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/网络安全/&quot;);" href="javascript:void(0);">网络安全</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">13</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0211/205947vo4tN.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/计算机网络/&quot;);" href="javascript:void(0);">计算机网络</a><span class="categoryBar-list-count">9</span><span class="categoryBar-list-descr">14</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0116/002132bki1w.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/技术工具/Linux/&quot;);" href="javascript:void(0);">Linux</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">15</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0126/232535X6TvR.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/前端开发/React/&quot;);" href="javascript:void(0);">React</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">16</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0106/210555pNOfD.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/前端开发/Vue-js/&quot;);" href="javascript:void(0);">Vue.js</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">17</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2025/0104/000806uMjHF.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/前端开发/TypeScript/&quot;);" href="javascript:void(0);">TypeScript</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">18</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2024/1222/2355141ro9k.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/版本控制/&quot;);" href="javascript:void(0);">版本控制</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">19</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2024/1030/234158qiZgJ.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/版本控制/开发工具/&quot;);" href="javascript:void(0);">开发工具</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">20</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2024/1005/234725fjV2b.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/Linux/&quot;);" href="javascript:void(0);">Linux</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">21</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2024/1021/004710uU7wH.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/数据结构/&quot;);" href="javascript:void(0);">数据结构</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">22</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2024/0924/233306Ro0pG.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/Linux/操作系统/&quot;);" href="javascript:void(0);">操作系统</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">23</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2024/0920/192250ki9Sy.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/数据结构/算法/&quot;);" href="javascript:void(0);">算法</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">24</span></li><li class="categoryBar-list-item" style="background:url(http://img.netbian.com/file/2024/0902/231659Hm8An.jpg);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/Linux/操作系统/系统管理/&quot;);" href="javascript:void(0);">系统管理</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr">25</span></li><li class="categoryBar-list-item" style="background:url(undefined);"> <a class="categoryBar-list-link" onclick="pjax.loadUrl(&quot;/categories/数据结构/算法/编程基础/&quot;);" href="javascript:void(0);">编程基础</a><span class="categoryBar-list-count">1</span><span class="categoryBar-list-descr"></span></li></ul></div></div>';
+    console.log('已挂载 butterfly_categories_card');
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+  }
+  // 路径匹配逻辑（使用 startsWith）
+  if (location.pathname.startsWith('/categories/') || '/categories/' === 'all') {
+    butterfly_categories_card_injector_config();
+  }
+  </script><script data-pjax>
+  function butterfly_swiper_injector_config(){
+    var parent_div_git = document.getElementById('recent-posts');
+    var item_html = '<div class="recent-post-item" style="height: auto;width: 100%"><div class="blog-slider swiper-container-fade swiper-container-horizontal" id="swiper_container"><div class="blog-slider__wrp swiper-wrapper" style="transition-duration: 0ms;"><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2025/08/23/MySQL数据库实战指南：从入门到精通/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/mysql.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-08-23</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2025/08/23/MySQL数据库实战指南：从入门到精通/&quot;);" href="javascript:void(0);" alt="">MySQL数据库实战指南：从入门到精通</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2025/08/23/MySQL数据库实战指南：从入门到精通/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2025/08/23/Linux命令行实战指南：从入门到精通/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/linux.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-08-23</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2025/08/23/Linux命令行实战指南：从入门到精通/&quot;);" href="javascript:void(0);" alt="">Linux命令行实战指南：从入门到精通</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2025/08/23/Linux命令行实战指南：从入门到精通/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（三）函数与模块详解/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/python.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-08-23</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（三）函数与模块详解/&quot;);" href="javascript:void(0);" alt="">Python编程之旅：从零基础到实战应用（三）——函数与模块详解</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（三）函数与模块详解/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（二）核心数据结构详解/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/python.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-08-23</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（二）核心数据结构详解/&quot;);" href="javascript:void(0);" alt="">Python编程之旅：从零基础到实战应用（二）——核心数据结构详解</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（二）核心数据结构详解/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（一）环境搭建与基础语法/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/python.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-08-23</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（一）环境搭建与基础语法/&quot;);" href="javascript:void(0);" alt="">Python编程之旅：从零基础到实战应用（一）——环境搭建与基础语法</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2025/08/23/Python编程之旅：从零基础到实战应用（一）环境搭建与基础语法/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2024/12/07/Linux操作系统入门：从零开始学习系统管理/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/linux.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-12-07</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2024/12/07/Linux操作系统入门：从零开始学习系统管理/&quot;);" href="javascript:void(0);" alt="">Linux操作系统入门：从零开始学习系统管理</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2024/12/07/Linux操作系统入门：从零开始学习系统管理/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2024/12/07/数据结构与算法入门：从零开始学习编程基础/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/algorithm.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-12-07</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2024/12/07/数据结构与算法入门：从零开始学习编程基础/&quot;);" href="javascript:void(0);" alt="">数据结构与算法入门：从零开始学习编程基础</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2024/12/07/数据结构与算法入门：从零开始学习编程基础/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2024/12/06/Git版本控制入门：从零开始学习代码管理/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/git.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-12-06</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2024/12/06/Git版本控制入门：从零开始学习代码管理/&quot;);" href="javascript:void(0);" alt="">Git版本控制入门：从零开始学习代码管理</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2024/12/06/Git版本控制入门：从零开始学习代码管理/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2025/08/23/React-Hooks完全指南：从基础到高级技巧/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/3.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-08-23</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2025/08/23/React-Hooks完全指南：从基础到高级技巧/&quot;);" href="javascript:void(0);" alt="">React Hooks完全指南：从基础到高级技巧</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2025/08/23/React-Hooks完全指南：从基础到高级技巧/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2024/12/05/Docker容器技术入门：从零开始学习容器化/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/docker.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-12-05</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2024/12/05/Docker容器技术入门：从零开始学习容器化/&quot;);" href="javascript:void(0);" alt="">Docker容器技术入门：从零开始学习容器化</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2024/12/05/Docker容器技术入门：从零开始学习容器化/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2025/08/23/JavaScript异步编程详解：从回调到Async-Await/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/2.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-08-23</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2025/08/23/JavaScript异步编程详解：从回调到Async-Await/&quot;);" href="javascript:void(0);" alt="">JavaScript异步编程详解：从回调到Async/Await</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2025/08/23/JavaScript异步编程详解：从回调到Async-Await/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2024/07/27/CSS现代布局技术深度解析/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/1.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2024-07-27</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2024/07/27/CSS现代布局技术深度解析/&quot;);" href="javascript:void(0);" alt="">CSS现代布局技术深度解析：从Flexbox到Grid的全面指南</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2024/07/27/CSS现代布局技术深度解析/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div><div class="blog-slider__item swiper-slide" style="width: 750px; opacity: 1; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;"><a class="blog-slider__img" onclick="pjax.loadUrl(&quot;2025/08/24/hello-world/&quot;);" href="javascript:void(0);" alt=""><img width="48" height="48" src="/img/default_cover.jpg" alt="" onerror="this.src=https://unpkg.zhimg.com/akilar-candyassets/image/loading.gif; this.onerror = null;"/></a><div class="blog-slider__content"><span class="blog-slider__code">2025-08-24</span><a class="blog-slider__title" onclick="pjax.loadUrl(&quot;2025/08/24/hello-world/&quot;);" href="javascript:void(0);" alt="">Hello World</a><div class="blog-slider__text">再怎么看我也不知道怎么描述它的啦！</div><a class="blog-slider__button" onclick="pjax.loadUrl(&quot;2025/08/24/hello-world/&quot;);" href="javascript:void(0);" alt="">详情       </a></div></div></div><div class="blog-slider__pagination swiper-pagination-clickable swiper-pagination-bullets"></div></div></div>';
+    console.log('已挂载butterfly_swiper')
+    parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  var elist = 'undefined'.split(',');
+  var cpage = location.pathname;
+  var epage = '/';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_swiper_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_swiper_injector_config();
+  }
+  </script><script defer src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper.min.js"></script><script defer data-pjax src="https://npm.elemecdn.com/hexo-butterfly-swiper/lib/swiper_init.js"></script><!-- hexo injector body_end end --></body></html>
