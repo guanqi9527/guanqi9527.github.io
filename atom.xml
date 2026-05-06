@@ -358,11 +358,11 @@
     <category term="计算机网络" scheme="https://guanqi9527.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
     
-    <category term="协议详解" scheme="https://guanqi9527.github.io/tags/%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/"/>
-    
     <category term="HTTP" scheme="https://guanqi9527.github.io/tags/HTTP/"/>
     
     <category term="应用层" scheme="https://guanqi9527.github.io/tags/%E5%BA%94%E7%94%A8%E5%B1%82/"/>
+    
+    <category term="协议详解" scheme="https://guanqi9527.github.io/tags/%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/"/>
     
   </entry>
   
@@ -482,11 +482,11 @@
     <category term="计算机网络" scheme="https://guanqi9527.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
     
+    <category term="协议详解" scheme="https://guanqi9527.github.io/tags/%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/"/>
+    
     <category term="网络层" scheme="https://guanqi9527.github.io/tags/%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
     
     <category term="IP" scheme="https://guanqi9527.github.io/tags/IP/"/>
-    
-    <category term="协议详解" scheme="https://guanqi9527.github.io/tags/%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/"/>
     
   </entry>
   
