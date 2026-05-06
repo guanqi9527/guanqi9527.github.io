@@ -1,0 +1,556 @@
+/* ========================================
+   自定义增强样式 - Custom Enhancements
+   作者: 观棋
+   版本: 1.0
+   ======================================== */
+
+/* ========================================
+   1. 滚动条美化
+   ======================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #49b1f5, #5c7cfa);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #5c7cfa, #845ef7);
+}
+
+/* 深色模式滚动条 */
+[data-theme='dark'] ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1, #8b5cf6);
+}
+
+/* ========================================
+   2. 卡片悬浮效果增强
+   ======================================== */
+.cardHover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(50, 50, 50, 0.15);
+}
+
+[data-theme='dark'] .cardHover:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   3. 文章内容样式优化
+   ======================================== */
+#article-container {
+  font-size: 16px;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+}
+
+#article-container h2 {
+  margin-top: 2em;
+  padding-left: 1em;
+  border-left: 4px solid #49b1f5;
+  transition: all 0.3s ease;
+}
+
+#article-container h2:hover {
+  border-left-color: #ff7e79;
+}
+
+#article-container h3 {
+  margin-top: 1.5em;
+  padding-left: 0.8em;
+  border-left: 3px solid #5c7cfa;
+}
+
+#article-container table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+}
+
+#article-container table th,
+#article-container table td {
+  padding: 12px 15px;
+  border: 1px solid #e5e7eb;
+  text-align: left;
+}
+
+#article-container table th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+}
+
+#article-container table tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+#article-container table tr:hover {
+  background-color: #f3f4f6;
+}
+
+[data-theme='dark'] #article-container table th,
+[data-theme='dark'] #article-container table td {
+  border-color: #374151;
+}
+
+[data-theme='dark'] #article-container table th {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+}
+
+[data-theme='dark'] #article-container table tr:nth-child(even) {
+  background-color: #1f2937;
+}
+
+[data-theme='dark'] #article-container table tr:hover {
+  background-color: #374151;
+}
+
+/* ========================================
+   4. 引用块样式优化
+   ======================================== */
+blockquote {
+  margin: 1.5em 0;
+  padding: 1em 1.5em;
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+  border-left: 4px solid #49b1f5;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  font-style: normal;
+  position: relative;
+  overflow: hidden;
+}
+
+blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  font-size: 60px;
+  color: #49b1f5;
+  opacity: 0.2;
+  font-family: Georgia, serif;
+}
+
+blockquote p {
+  margin: 0;
+  color: #4a5568;
+}
+
+[data-theme='dark'] blockquote {
+  background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+  border-left-color: #6366f1;
+}
+
+[data-theme='dark'] blockquote p {
+  color: #d1d5db;
+}
+
+/* ========================================
+   5. 链接样式优化
+   ======================================== */
+a {
+  color: #49b1f5;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+a:hover {
+  color: #ff7e79;
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #49b1f5, #ff7e79);
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* ========================================
+   6. 代码块样式增强
+   ======================================== */
+pre {
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 1.5em 0;
+  overflow: hidden;
+}
+
+code {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.9em;
+}
+
+/* 内联代码样式 */
+:not(pre) > code {
+  padding: 3px 8px;
+  background: #f1f3f5;
+  border-radius: 4px;
+  color: #e83e8c;
+  font-size: 0.9em;
+}
+
+[data-theme='dark'] :not(pre) > code {
+  background: #2d3748;
+  color: #f687b3;
+}
+
+/* ========================================
+   7. 导航栏样式优化
+   ======================================== */
+#nav {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+#nav:hover {
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+/* ========================================
+   8. 侧边栏样式优化
+   ======================================== */
+#aside-content .card-widget {
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+#aside-content .card-widget:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+[data-theme='dark'] #aside-content .card-widget {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme='dark'] #aside-content .card-widget:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* ========================================
+   9. 按钮样式增强
+   ======================================== */
+.btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+/* ========================================
+   10. 页面过渡动画
+   ======================================== */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
+}
+
+/* ========================================
+   11. 加载动画优化
+   ======================================== */
+.loading {
+  position: relative;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ========================================
+   12. 标签云样式
+   ======================================== */
+#tag -> .card-info,
+.tag-cloud a {
+  display: inline-block;
+  padding: 5px 12px;
+  margin: 3px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px;
+  font-size: 0.85em;
+  transition: all 0.3s ease;
+}
+
+.tag-cloud a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
+}
+
+/* ========================================
+   13. 分类卡片样式
+   ======================================== */
+.category-item,
+.tag-item {
+  transition: all 0.3s ease;
+  border-radius: 12px;
+}
+
+.category-item:hover,
+.tag-item:hover {
+  transform: translateX(5px);
+  background: linear-gradient(90deg, transparent, rgba(73, 177, 245, 0.1), transparent);
+}
+
+/* ========================================
+   14. 响应式优化
+   ======================================== */
+@media (max-width: 768px) {
+  #article-container {
+    font-size: 15px;
+  }
+
+  blockquote {
+    padding: 0.8em 1em;
+  }
+
+  #article-container h2,
+  #article-container h3 {
+    padding-left: 0.5em;
+  }
+
+  table {
+    font-size: 0.9em;
+  }
+}
+
+/* ========================================
+   15. 打字机效果增强
+   ======================================== */
+.typed-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   16. 图片灯箱增强
+   ======================================== */
+.medium-zoom-overlay,
+.medium-zoom-image {
+  border-radius: 12px;
+}
+
+/* ========================================
+   17. 打赏样式增强
+   ======================================== */
+#reward {
+  margin: 2em 0;
+  padding: 2em;
+  background: linear-gradient(135deg, #fef3f3 0%, #fff5f5 100%);
+  border-radius: 16px;
+  border: 2px dashed #ff7e79;
+}
+
+[data-theme='dark'] #reward {
+  background: linear-gradient(135deg, #1f1f1f 0%, #2d2d2d 100%);
+}
+
+/* ========================================
+   18. 文章元信息增强
+   ======================================== */
+.post-meta__date,
+.post-meta__views {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #6b7280;
+  font-size: 0.9em;
+}
+
+.post-meta__date i,
+.post-meta__views i {
+  color: #49b1f5;
+}
+
+/* ========================================
+   19. 归档页样式
+   ======================================== */
+.archive-item {
+  display: flex;
+  align-items: center;
+  padding: 1em;
+  margin: 0.5em 0;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.archive-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .archive-item {
+  background: #1f2937;
+}
+
+/* ========================================
+   20. Footer样式增强
+   ======================================== */
+#footer {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2em 0;
+}
+
+#footer a {
+  color: white;
+}
+
+#footer a:hover {
+  color: #fef3f3;
+}
+
+/* ========================================
+   21. 404页面样式
+   ======================================== */
+.error-page {
+  text-align: center;
+  padding: 5em 2em;
+}
+
+.error-page h1 {
+  font-size: 10em;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.error-page p {
+  font-size: 1.5em;
+  color: #6b7280;
+  margin: 1em 0;
+}
+
+/* ========================================
+   22. 搜索框样式增强
+   ======================================== */
+#search-button,
+.search-button {
+  transition: all 0.3s ease;
+}
+
+#search-button:hover,
+.search-button:hover {
+  transform: scale(1.1);
+  color: #667eea;
+}
+
+/* ========================================
+   23. 分页样式
+   ======================================== */
+.pagination .page-number,
+.pagination .extend,
+.pagination .space {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  margin: 0 5px;
+  padding: 0 15px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.pagination .page-number:hover,
+.pagination .extend:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.pagination .current {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+[data-theme='dark'] .pagination .page-number,
+[data-theme='dark'] .pagination .extend,
+[data-theme='dark'] .pagination .space {
+  background: #1f2937;
+  color: #d1d5db;
+}
+
+/* ========================================
+   24. 音乐播放器样式
+   ======================================== */
+.aplayer {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   25. 看板娘样式
+   ======================================== */
+#live2d-canvas {
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+}

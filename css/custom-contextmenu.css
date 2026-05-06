@@ -1,54 +1,99 @@
-/**
- * 自定义右键菜单样式
- */
+/* ========================================
+   自定义右键菜单样式
+   Custom Context Menu Styles
+   ======================================== */
 
-/* 隐藏默认右键菜单 */
-/* 注意：在实际应用中，不建议完全禁用默认右键菜单 */
-/* body { cursor: default; } */
-
-/* 自定义右键菜单 */
-.custom-contextmenu {
-  position: fixed;
-  z-index: 9999;
+.custom-context-menu {
   display: none;
-  background-color: var(--card-bg);
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 8px 0;
-  min-width: 160px;
-  border: 1px solid var(--border-color);
+  position: fixed;
+  z-index: 10000;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  min-width: 180px;
+  padding: 0.5em 0;
+  animation: fadeIn 0.2s ease;
 }
 
-.custom-contextmenu-item {
-  display: block;
-  padding: 8px 16px;
-  color: var(--text-color);
-  text-decoration: none;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.custom-context-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-context-menu li {
+  padding: 0.8em 1.5em;
   cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4a5568;
+  font-size: 0.95em;
 }
 
-.custom-contextmenu-item:hover {
-  background-color: var(--hover-bg);
+.custom-context-menu li:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
 }
 
-.custom-contextmenu-item i {
-  margin-right: 8px;
-  width: 16px;
+.custom-context-menu li i {
+  width: 20px;
   text-align: center;
+  opacity: 0.8;
 }
 
-/* 分隔线 */
-.custom-contextmenu-separator {
+.custom-context-menu li.divider {
   height: 1px;
-  margin: 4px 0;
-  background-color: var(--border-color);
+  background: #e5e7eb;
+  margin: 0.5em 0;
+  padding: 0;
+  cursor: default;
 }
 
-/* 响应式调整 */
+.custom-context-menu li.divider:hover {
+  background: #e5e7eb;
+  color: #4a5568;
+}
+
+/* 深色模式适配 */
+[data-theme='dark'] .custom-context-menu {
+  background: #1f2937;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .custom-context-menu li {
+  color: #d1d5db;
+}
+
+[data-theme='dark'] .custom-context-menu li.divider {
+  background: #374151;
+}
+
+[data-theme='dark'] .custom-context-menu li.divider:hover {
+  background: #374151;
+}
+
+/* 响应式 */
 @media (max-width: 768px) {
-  .custom-contextmenu {
-    min-width: 140px;
+  .custom-context-menu {
+    min-width: 150px;
+  }
+  
+  .custom-context-menu li {
+    padding: 0.6em 1em;
+    font-size: 0.9em;
   }
 }

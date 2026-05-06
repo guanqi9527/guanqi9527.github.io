@@ -1,14 +1,38 @@
+# Hexo Butterfly 博客 Robots.txt
+# https://guanqi9527.github.io
+
 User-agent: *
 Allow: /
-Allow: /archives/
-Allow: /tags/
-Allow: /categories/
-Allow: /about/
-Allow: /link/
-Allow: /shuoshuo/
-Disallow: /node_modules/
-Disallow: /themes/
-Disallow: /source/_posts/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /lib/
+Disallow: /live2dw/
 
+# Sitemap
 Sitemap: https://guanqi9527.github.io/sitemap.xml
 Sitemap: https://guanqi9527.github.io/baidusitemap.xml
+
+# 百度
+User-agent: Baiduspider
+Allow: /
+Disallow: /js/
+Disallow: /css/
+
+# Google
+User-agent: Googlebot
+Allow: /
+Disallow: /js/
+Disallow: /css/
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Disallow: /js/
+Disallow: /css/
+
+# Yahoo
+User-agent: Slurp
+Allow: /
+Disallow: /js/
+Disallow: /css/
