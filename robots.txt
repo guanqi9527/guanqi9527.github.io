@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /tags/
+Allow: /categories/
+Allow: /about/
+Allow: /link/
+Allow: /shuoshuo/
+Disallow: /node_modules/
+Disallow: /themes/
+Disallow: /source/_posts/
+
+Sitemap: https://guanqi9527.github.io/sitemap.xml
+Sitemap: https://guanqi9527.github.io/baidusitemap.xml
