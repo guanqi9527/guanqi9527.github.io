@@ -431,15 +431,15 @@
     <category term="DevOps" scheme="https://guanqi9527.github.io/categories/%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF/DevOps/"/>
     
     
+    <category term="入门教程" scheme="https://guanqi9527.github.io/tags/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
+    
+    <category term="零基础" scheme="https://guanqi9527.github.io/tags/%E9%9B%B6%E5%9F%BA%E7%A1%80/"/>
+    
     <category term="Docker" scheme="https://guanqi9527.github.io/tags/Docker/"/>
     
     <category term="容器" scheme="https://guanqi9527.github.io/tags/%E5%AE%B9%E5%99%A8/"/>
     
     <category term="DevOps" scheme="https://guanqi9527.github.io/tags/DevOps/"/>
-    
-    <category term="入门教程" scheme="https://guanqi9527.github.io/tags/%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/"/>
-    
-    <category term="零基础" scheme="https://guanqi9527.github.io/tags/%E9%9B%B6%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
@@ -670,9 +670,9 @@
     
     <category term="协议详解" scheme="https://guanqi9527.github.io/tags/%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/"/>
     
-    <category term="网络层" scheme="https://guanqi9527.github.io/tags/%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
-    
     <category term="IP" scheme="https://guanqi9527.github.io/tags/IP/"/>
+    
+    <category term="网络层" scheme="https://guanqi9527.github.io/tags/%E7%BD%91%E7%BB%9C%E5%B1%82/"/>
     
   </entry>
   
