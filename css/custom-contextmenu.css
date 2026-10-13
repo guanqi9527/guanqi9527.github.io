@@ -1,0 +1,99 @@
+/* ========================================
+   自定义右键菜单样式
+   Custom Context Menu Styles
+   ======================================== */
+
+.custom-context-menu {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  min-width: 180px;
+  padding: 0.5em 0;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.custom-context-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-context-menu li {
+  padding: 0.8em 1.5em;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4a5568;
+  font-size: 0.95em;
+}
+
+.custom-context-menu li:hover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.custom-context-menu li i {
+  width: 20px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.custom-context-menu li.divider {
+  height: 1px;
+  background: #e5e7eb;
+  margin: 0.5em 0;
+  padding: 0;
+  cursor: default;
+}
+
+.custom-context-menu li.divider:hover {
+  background: #e5e7eb;
+  color: #4a5568;
+}
+
+/* 深色模式适配 */
+[data-theme='dark'] .custom-context-menu {
+  background: #1f2937;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='dark'] .custom-context-menu li {
+  color: #d1d5db;
+}
+
+[data-theme='dark'] .custom-context-menu li.divider {
+  background: #374151;
+}
+
+[data-theme='dark'] .custom-context-menu li.divider:hover {
+  background: #374151;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .custom-context-menu {
+    min-width: 150px;
+  }
+  
+  .custom-context-menu li {
+    padding: 0.6em 1em;
+    font-size: 0.9em;
+  }
+}

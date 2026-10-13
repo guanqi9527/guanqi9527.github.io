@@ -1,0 +1,16 @@
+{
+  "providers": [
+    {
+      "name": "Framatube",
+      "base": "https://framatube.org",
+      "api": "https://framatube.org/api/v1/search/videos",
+      "home": "https://framatube.org/"
+    },
+    {
+      "name": "PeerTube / La Quadrature du Net",
+      "base": "https://video.lqdn.fr",
+      "api": "https://video.lqdn.fr/api/v1/search/videos",
+      "home": "https://video.lqdn.fr/"
+    }
+  ]
+}
